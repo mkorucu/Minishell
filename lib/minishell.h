@@ -3,7 +3,6 @@
 
 # include "../libft/libft.h"
 # include "colors.h"
-# include "get_next_line.h"
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -28,7 +27,7 @@ typedef struct s_data
 	char	**paths;
 	char	*read1;
 	char	**read2;
-	t_token	*token;
+	//t_token	*token;
     int     fail;
 }		t_data;
 
