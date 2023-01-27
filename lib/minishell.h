@@ -17,6 +17,16 @@
 # include <signal.h>
 # include <sys/ioctl.h>
 
+enum enum_builtin_types
+{
+	CD = 1,
+	ENV,
+	PWD,
+	ECHO,
+	EXIT,
+	UNSET,
+	EXPORT
+};
 
 typedef struct s_prompt
 {
