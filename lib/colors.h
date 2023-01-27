@@ -1,5 +1,4 @@
 #ifndef COLORS_H
-
 # define COLORS_H
 
 /* Color codes for users  */

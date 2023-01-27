@@ -17,7 +17,7 @@
 # include <signal.h>
 # include <sys/ioctl.h>
 
-enum enum_builtin_types
+enum	enum_builtin_types
 {
 	CD = 1,
 	ENV,

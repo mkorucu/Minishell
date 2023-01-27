@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 20:41:37 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/01/27 20:42:14 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/01/27 23:27:18 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	builtin_cd(char **input)
 {
-	
 	if (input[1] == NULL)
 	{
 		if (chdir(getenv("HOME")))
@@ -22,7 +21,7 @@ void	builtin_cd(char **input)
 	}
 	else
 	{
-		if(chdir(input[1]) != 0)
+		if (chdir(input[1]) != 0)
 			perror("minishell ");
 	}
 	if (hack.parent_pid != getpid())
