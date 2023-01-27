@@ -17,6 +17,14 @@
 # include <signal.h>
 # include <sys/ioctl.h>
 
+
+typedef struct s_prompt
+{
+	t_list	*cmds;
+	char	**envp;
+	pid_t	pid;
+}			t_prompt;
+
 typedef struct s_data
 {
 	int		ac;
@@ -28,9 +36,13 @@ typedef struct s_data
 	char	*read1;
 	char	**read2;
 	//t_token	*token;
+	t_prompt	*prompt;
     int     fail;
 }		t_data;
 
 extern t_data hack;
+
+int		main(int ac, char **av, char **env);
+void	handle_sigint(int sig);
 
 #endif
