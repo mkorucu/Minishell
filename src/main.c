@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:44:53 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/01/28 20:58:20 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/01/28 21:03:01 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,4 @@ int	main(int ac, char **av, char **env)
 		str = get_prompt();
 	}
 }
+ 
