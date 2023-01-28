@@ -73,5 +73,6 @@ extern t_data crime;
 
 int		main(int ac, char **av, char **env);
 void	handle_sigint(int sig);
+void	create_crime(char **av, char **env);
 
 #endif

@@ -13,10 +13,3 @@ void	handle_sigint(int sig)
 	}
 }
 
-int	main(int ac, char **av, char **env)
-{
-	char	*in;
-
-	init_app(env);
-	
-}
