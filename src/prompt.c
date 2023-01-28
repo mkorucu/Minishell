@@ -61,11 +61,11 @@ char	*get_prompt()
 	char	*prompt;
 	char	*prompt2;
 
-	user = get_user(*hack.prompt);
+	user = get_user(*crime.prompt);
 	prompt = ft_strjoin(user, "@minishell");
 	free(user);
 	
-	if (!hack.fail || hack.fail == -1)
+	if (!crime.fail || crime.fail == -1)
 		prompt2 = ft_strjoin(prompt, BLUE);
 	else
 		prompt2 = ft_strjoin(prompt, RED);

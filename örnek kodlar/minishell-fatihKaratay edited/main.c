@@ -6,7 +6,7 @@
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:14:23 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/01/27 19:31:38 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/01/28 17:02:26 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,36 @@ t_minishell	g_ms;
 
 void	init_app(char **env)
 {
+	int	i;
+	int	j;
+	
+	i = 0;
+	(void)env;
 	errno = 0;
 	g_ms.paths = NULL;
 	g_ms.parent_pid = getpid();
-	set_env(env);
-	set_paths();
+	while(env[i])
+	{
+		if (!ft_strncmp(env[i], "USER=", 5))
+		{
+			j = 5;
+			while(env[i][j] != '\0')
+				j++;
+			printf("%d, %d\n",i, j);
+			g_ms.user = ft_calloc(sizeof(char), j - 4);
+			g_ms.user = ft_strdup(&env[i][5]);
+			printf("%s\n",g_ms.user);
+		}
+		i++;
+	}
 }
 
 void	init_shell(char *input)
 {
+	(void)input;
 	g_ms.token = NULL;
 	g_ms.process = NULL;
 	g_ms.process_count = 0;
-	tokenize(input);
-	if (!lexer())
-		return ;
-	start_cmd();
-	free_process();
 }
 void	ctrl_c(int sig)
 {
@@ -51,11 +64,13 @@ void	ctrl_d(char *input)
 	}
 }
 
+
 int	main(int ac, char **av, char **env)
 {
 	char	*input;
-
 	init_app(env);
+	set_env(env);
+	set_paths();
 	while (ac && av)
 	{
 		g_ms.ignore = FALSE;
@@ -73,6 +88,11 @@ int	main(int ac, char **av, char **env)
 		if (*input)
 		{
 			init_shell(input);
+			tokenize(input);
+			if (!lexer())
+				continue;
+			start_cmd();
+			free_process();
 			add_history(input);
 		}
 		free(input);

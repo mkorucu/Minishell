@@ -69,7 +69,7 @@ typedef struct s_data
     int     fail;
 }		t_data;
 
-extern t_data hack;
+extern t_data crime;
 
 int		main(int ac, char **av, char **env);
 void	handle_sigint(int sig);
