@@ -2,6 +2,7 @@
 #define MINISHELL_H
 
 # include "../libft/libft.h"
+# include "../gnl/get_next_line.h"
 # include "colors.h"
 # include <stdio.h>
 # include <readline/readline.h>
@@ -17,6 +18,9 @@
 # include <signal.h>
 # include <sys/ioctl.h>
 
+# define READ_END 0
+# define WRITE_END 1
+
 enum	enum_builtin_types
 {
 	CD = 1,
@@ -26,6 +30,21 @@ enum	enum_builtin_types
 	EXIT,
 	UNSET,
 	EXPORT
+};
+
+enum	e_mini_error
+{
+	QUOTE = 1,
+	NDIR = 2,
+	NPERM = 3,
+	NCMD = 6,
+	DUPERR = 7,
+	FORKERR = 8,
+	PIPERR = 9,
+	PIPENDERR = 10,
+	MEM = 11,
+	IS_DIR = 12,
+	NOT_DIR = 13
 };
 
 typedef struct s_prompt
