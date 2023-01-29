@@ -6,7 +6,7 @@
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:14:23 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/01/29 18:03:50 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/01/29 18:23:19 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ctrl_d(char *input)
 int	main(int ac, char **av, char **env)
 {
 	char	*input2;
-	char *input;
+	char	*input;
 	init_app(env);
 	set_env(env);
 	set_paths();
@@ -76,7 +76,7 @@ int	main(int ac, char **av, char **env)
 		signal(SIGINT, &ctrl_c);
 		signal(SIGQUIT, SIG_IGN);
 		write(1, "\033[32m", 5);
-		input2 = ft_strjoin(g_ms.user, " minishell > ");
+		input2 = ft_strjoin(g_ms.user," minishell_> ");
 		input = readline(input2);
 		write(1, "\033[0m", 4);
 		ctrl_d(input);
