@@ -6,7 +6,7 @@
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:14:23 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/01/28 17:02:26 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/01/29 18:23:19 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ void	init_app(char **env)
 			j = 5;
 			while(env[i][j] != '\0')
 				j++;
-			printf("%d, %d\n",i, j);
 			g_ms.user = ft_calloc(sizeof(char), j - 4);
 			g_ms.user = ft_strdup(&env[i][5]);
-			printf("%s\n",g_ms.user);
 		}
 		i++;
 	}
@@ -67,6 +65,7 @@ void	ctrl_d(char *input)
 
 int	main(int ac, char **av, char **env)
 {
+	char	*input2;
 	char	*input;
 	init_app(env);
 	set_env(env);
@@ -77,7 +76,8 @@ int	main(int ac, char **av, char **env)
 		signal(SIGINT, &ctrl_c);
 		signal(SIGQUIT, SIG_IGN);
 		write(1, "\033[32m", 5);
-		input = readline("minishell_> ");
+		input2 = ft_strjoin(g_ms.user," minishell_> ");
+		input = readline(input2);
 		write(1, "\033[0m", 4);
 		ctrl_d(input);
 		if (g_ms.ignore)
