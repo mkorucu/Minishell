@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
+/*
 void	builtin_pwd(void)
 {
 	char	*result;
@@ -24,4 +24,14 @@ void	builtin_pwd(void)
 	free(result);
 	if (!is_parent())
 		exit(errno);
+}
+
+*/
+
+void	builtin_pwd(void)
+{
+	char	cwd[1024];
+	chdir("/path/to/change/directory/to");
+	getcwd(cwd, sizeof(cwd));
+	printf("%s\n", cwd);
 }

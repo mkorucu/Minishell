@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 01:18:03 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/01/21 02:14:04 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/01/29 18:38:02 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	builtin_echo(char **execute)
 		flag = 0;
 	while (execute[i])
 	{
-		printf(execute[i]);
+		printf("%s\n", execute[i]);
 		if (execute[i + 1])
 			write(1, " ", 1);
 		i++;
@@ -34,5 +34,4 @@ void	builtin_echo(char **execute)
 		write(1, "\n", 1);
 	if (!is_parent())
 		exit(EXIT_SUCCESS);
-	
 }

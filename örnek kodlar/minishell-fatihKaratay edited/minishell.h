@@ -81,6 +81,7 @@ typedef struct s_minishell
 	int			parent_pid;
 	int			process_count;
 	int			ignore;
+	int			flag;
 	char		**env;
 	char		**paths;
 	char		*user;

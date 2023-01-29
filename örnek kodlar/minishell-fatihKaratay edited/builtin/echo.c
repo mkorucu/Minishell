@@ -11,53 +11,38 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	put_char(char *input)
+/*
+int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (input[i])
-	{
-		write(STDOUT_FILENO, &(input[i]), 1);
+	while (i < n && str1[i] && str2[i] && str1[i] == str2[i])
 		i++;
-	}
+	if (i == n)
+		return (0);
+	return ((unsigned char)str1[i] - (unsigned char)str2[i]);
 }
-
-int	skip_flag(char **str)
+*/
+void	builtin_echo(char **execute)
 {
 	int	i;
 
 	i = 1;
-	while (str[i])
-	{
-		if (ft_strcmp(str[i], "-n"))
-			i++;
-		else
-			break ;
-	}
-	return (i);
-}
-
-void	builtin_echo(char **input)
-{
-	int	i;
-	int	flag;
-
-	i = 1;
-	flag = TRUE;
-	i = skip_flag(input);
+	while (execute[i] && ft_strncmp(execute[i], "-n", 3))
+		i++;
+	g_ms.flag = 1;
 	if (i > 1)
-		flag = FALSE;
-	while (input[i])
+		g_ms.flag = 0;
+	while (execute[i])
 	{
-		put_char(input[i]);
-		if (input[i + 1])
-			write(STDOUT_FILENO, " ", 1);
+		printf("%s\n", execute[i]);
+		if (execute[i + 1])
+			write(1, " ", 1);
 		i++;
 	}
-	if (flag)
-		write(STDOUT_FILENO, "\n", 1);
+	if (g_ms.flag)
+		write(1, "\n", 1);
 	if (!is_parent())
 		exit(EXIT_SUCCESS);
 }

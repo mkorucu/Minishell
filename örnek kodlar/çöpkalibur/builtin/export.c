@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 01:45:26 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/01/21 03:19:22 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/01/29 18:57:28 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_env_checker(char *str)
 {
 	char	*head;
-	
+
 	head = ft_strchr(str, '=');
 	if (!head || head == str)
 		return (0);

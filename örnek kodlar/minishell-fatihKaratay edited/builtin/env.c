@@ -19,9 +19,9 @@ void	builtin_env(void)
 	env = g_ms.env;
 	while (*env)
 	{
-		printf("%s\n", *env);
+		printf("%s\n",*env);
 		env++;
 	}
-	if (!is_parent())
-		exit (EXIT_SUCCESS);
+	if (!(g_ms.parent_pid == getpid()))
+		exit (EXIT_SUCCESS);	
 }
