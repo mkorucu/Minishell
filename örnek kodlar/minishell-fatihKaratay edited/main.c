@@ -6,7 +6,7 @@
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:14:23 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/01/29 20:02:33 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/01/29 21:28:09 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,16 @@ void	init_app(char **env)
 void	init_shell(char *input)
 {
 	(void)input;
+	if (!(*input))
+		return ;
 	g_ms.token = NULL;
 	g_ms.process = NULL;
 	g_ms.process_count = 0;
+	tokenize(input);
+	if (!lexer())
+		return ;
+	start_cmd();
+	free_process();
 }
 void	ctrl_c(int sig)
 {
@@ -72,11 +79,6 @@ int	main(int ac, char **av, char **env)
 		if (*input)
 		{
 			init_shell(input);
-			tokenize(input);
-			if (!lexer())
-				continue;
-			start_cmd();
-			free_process();
 			add_history(input);
 		}
 		free(input);

@@ -32,6 +32,16 @@ enum	enum_builtin_types
 	EXPORT
 };
 
+enum e_ttype
+{
+	PIPE = 1,
+	STRING,
+	HERE_DOC,
+	RED_INPUT,
+	RED_APPEND,
+	RED_OUTPUT
+};
+
 enum	e_mini_error
 {
 	QUOTE = 1,
@@ -47,6 +57,14 @@ enum	e_mini_error
 	NOT_DIR = 13
 };
 
+typedef struct s_chain
+{
+	char			*str;
+	enum e_ttype	type;
+	struct s_chain	*prev;
+	struct s_chain	*next;
+}	t_chain;
+
 typedef struct s_prompt
 {
 	t_list	*cmds;
@@ -59,13 +77,14 @@ typedef struct s_data
 	int		ac;
 	int		parent_pid;
 	int		process_count;
+	int 	ignore;
 	char	*user;
 	char	**av;
 	char	**env;
 	char	**paths;
 	char	*read1;
 	char	**read2;
-	//t_token	*token;
+	t_chain	*chain;
 	t_prompt	*prompt;
     int     fail;
 }		t_data;

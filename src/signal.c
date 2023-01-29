@@ -15,6 +15,9 @@ void	handle_sigint(int sig)
 
 void	handle_exit(char *str)
 {
-	if (!input)
-	
+	if (!str)
+	{
+		printf("exit\n");
+		exit(errno);
+	}
 }

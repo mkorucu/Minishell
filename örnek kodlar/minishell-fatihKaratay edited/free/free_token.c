@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scakmak <scakmak@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 21:47:57 by fkaratay          #+#    #+#             */
-/*   Updated: 2022/10/13 01:03:20 by scakmak          ###   ########.fr       */
+/*   Updated: 2023/01/29 21:20:52 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	free_token(void)
 	token = g_ms.token;
 	while (token)
 	{
-		free(token->str);
+		//free(token->str);
 		token = token->next;
 	}
 	token = g_ms.token;
