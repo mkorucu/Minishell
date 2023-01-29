@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkaratay <fkaratay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:14:03 by fkaratay          #+#    #+#             */
-/*   Updated: 2022/10/13 02:27:17 by fkaratay         ###   ########.fr       */
+/*   Updated: 2023/01/29 19:15:20 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,23 @@ char	*split_env(char *str)
 
 char	*get_env(char *str)
 {
-	size_t	len;
-	char	**env;
-	char	*new_str;
+	int		i;
+	int		len;
+	char	*curr;
 
-	env = g_ms.env;
-	new_str = ft_strjoin(str, "=");
-	len = ft_strlen(new_str);
-	while (*env)
+
+	curr = ft_strjoin(str, "=");
+	i = 0;
+	len = ft_strlen(curr);
+	while (g_ms.env[i])
 	{
-		if (!ft_strncmp(*env, new_str, len))
+		if (!ft_strncmp(g_ms.env[i], curr, len))
 		{
-			free(new_str);
-			return (split_env(*env));
+			free(curr);
+			return (ft_strdup(&g_ms.env[i][len]));
 		}
-		env++;
+		i++;
 	}
-	free(new_str);
+	free (curr);
 	return (ft_calloc(sizeof(char *), 1));
 }

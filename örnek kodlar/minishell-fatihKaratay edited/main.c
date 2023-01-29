@@ -6,7 +6,7 @@
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:14:23 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/01/29 18:23:19 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/01/29 18:51:02 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,10 @@ t_minishell	g_ms;
 
 void	init_app(char **env)
 {
-	int	i;
-	int	j;
-	
-	i = 0;
 	(void)env;
 	errno = 0;
 	g_ms.paths = NULL;
 	g_ms.parent_pid = getpid();
-	while(env[i])
-	{
-		if (!ft_strncmp(env[i], "USER=", 5))
-		{
-			j = 5;
-			while(env[i][j] != '\0')
-				j++;
-			g_ms.user = ft_calloc(sizeof(char), j - 4);
-			g_ms.user = ft_strdup(&env[i][5]);
-		}
-		i++;
-	}
 }
 
 void	init_shell(char *input)

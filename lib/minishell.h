@@ -59,6 +59,7 @@ typedef struct s_data
 	int		ac;
 	int		parent_pid;
 	int		process_count;
+	char	*user;
 	char	**av;
 	char	**env;
 	char	**paths;

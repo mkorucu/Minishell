@@ -5,20 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 22:14:03 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/01/29 19:15:20 by mkorucu          ###   ########.fr       */
+/*   Created: 2023/01/29 18:59:00 by mkorucu           #+#    #+#             */
+/*   Updated: 2023/01/29 19:15:07 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-
-char	*split_env(char *str)
-{
-	while (*str != '=')
-		str++;
-	str++;
-	return (ft_strdup(str));
-}
+#include "../lib/minishell.h"
 
 char	*get_env(char *str)
 {
@@ -30,12 +22,12 @@ char	*get_env(char *str)
 	curr = ft_strjoin(str, "=");
 	i = 0;
 	len = ft_strlen(curr);
-	while (g_ms.env[i])
+	while (crime.env[i])
 	{
-		if (!ft_strncmp(g_ms.env[i], curr, len))
+		if (!ft_strncmp(crime.env[i], curr, len))
 		{
 			free(curr);
-			return (ft_strdup(&g_ms.env[i][len]));
+			return (ft_strdup(&crime.env[i][len]));
 		}
 		i++;
 	}

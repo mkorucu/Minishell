@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   int_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/27 23:44:53 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/01/29 19:17:48 by mkorucu          ###   ########.fr       */
+/*   Created: 2023/01/29 18:51:24 by mkorucu           #+#    #+#             */
+/*   Updated: 2023/01/29 18:56:35 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../lib/minishell.h"
 
-int	main(int ac, char **av, char **env)
+void	set_path(void)
 {
-	char	*str;
+	char	*path;
 
-	crime.ac = ac;
-	create_crime(av, env);
-	while (av && ac)
-	{
-		signal(SIGINT, handle_sigint);
-		signal(SIGQUIT, SIG_IGN);
-		str = get_prompt();
-	}
+	if ()
 }
-//(void) buse bi şeyi de becer 
- 
