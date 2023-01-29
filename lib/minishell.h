@@ -57,6 +57,13 @@ enum	e_mini_error
 	NOT_DIR = 13
 };
 
+enum e_quotetype
+{
+	DOUBLE_QUOTE = '"',
+	SINGLE_QUOTE = '\'',
+};
+
+
 typedef struct s_chain
 {
 	char			*str;
