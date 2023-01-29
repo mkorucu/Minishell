@@ -1,0 +1,10 @@
+{
+	"files.associations": {
+		"minishell.h": "c",
+		"__config": "c",
+		"complex": "c",
+		"__threading_support": "c",
+		"cerrno": "c",
+		"locale": "c"
+	}
+}
