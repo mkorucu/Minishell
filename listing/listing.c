@@ -6,7 +6,7 @@
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 20:53:56 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/01/29 21:25:44 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/01/29 21:42:49 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,5 @@ void	listing(char *input)
 			input += add_list(&crime.chain, new_list("<", RED_INPUT));
 		else if (!ft_strncmp(input, ">", 1))
 			input += add_list(&crime.chain, new_list(">", RED_OUTPUT));
-		else
-			
 	}		
 }

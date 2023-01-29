@@ -65,12 +65,16 @@ typedef struct s_chain
 	struct s_chain	*next;
 }	t_chain;
 
-typedef struct s_prompt
+typedef struct s_process
 {
-	t_list	*cmds;
-	char	**envp;
-	pid_t	pid;
-}			t_prompt;
+	pid_t				pid;
+	int					fd[2];
+	int					heredoc_fd[2];
+	char				**execute;
+	char				**redirects;
+	struct s_process	*prev;
+	struct s_process	*next;
+}	t_process;
 
 typedef struct s_data
 {
