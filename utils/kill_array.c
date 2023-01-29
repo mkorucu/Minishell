@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   int_path.c                                         :+:      :+:    :+:   */
+/*   kill_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 18:51:24 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/01/29 18:56:35 by mkorucu          ###   ########.fr       */
+/*   Created: 2023/01/29 19:24:53 by mkorucu           #+#    #+#             */
+/*   Updated: 2023/01/29 19:49:15 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minishell.h"
 
-void	set_path(void)
+void	kill_array(char **arr)
 {
-	char	*path;
+	int	i;
 
-	if ()
+	i = 0;
+	while(arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }

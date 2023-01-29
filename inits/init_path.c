@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/27 23:44:53 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/01/29 19:59:54 by mkorucu          ###   ########.fr       */
+/*   Created: 2023/01/29 18:51:24 by mkorucu           #+#    #+#             */
+/*   Updated: 2023/01/29 19:59:40 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../lib/minishell.h"
 
-int	main(int ac, char **av, char **env)
+void	init_path(void)
 {
-	char	*str;
+	char	*path;
 
-	crime.ac = ac;
-	init_app();
-	init_env(env);
-	init_path();
-	while (av && ac)
-	{
-		signal(SIGINT, handle_sigint);
-		signal(SIGQUIT, SIG_IGN);
-		str = get_prompt();
-	}
+	if (crime.paths)
+		kill_array(crime.paths);
+	path = get_env("PATH");
+	if (!(*path))
+		crime.paths = NULL;
+	else
+		crime.paths = ft_split(path, ':');
+	free(path);
 }
- 
