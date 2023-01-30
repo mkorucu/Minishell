@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_token.c                                       :+:      :+:    :+:   */
+/*   free_chain.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 21:47:57 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/01/30 16:15:23 by mkorucu          ###   ########.fr       */
+/*   Created: 2023/01/30 16:10:52 by mkorucu           #+#    #+#             */
+/*   Updated: 2023/01/30 16:23:29 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../lib/minishell.h"
 
-void	free_token(void)
+void	free_chain()
 {
-	t_token		*tmp;
-	t_token		*token;
-
-	token = g_ms.token;
-	while (token)
+	t_chain	*curr;
+	t_chain	*curr2;
+	
+	curr = crime.chain;
+	while(curr)
 	{
-		free(token->str);
-		token = token->next;
-	}
-	token = g_ms.token;
-	while (token)
-	{
-		tmp = token;
-		token = token->next;
-		free(tmp);
+		curr2 = curr;
+		curr = curr->next;
+		free(curr2);
 	}
 }

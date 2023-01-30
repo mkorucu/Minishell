@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 20:53:56 by mkorucu           #+#    #+#             */
-<<<<<<< HEAD:listing/listing.c
-/*   Updated: 2023/01/29 21:42:49 by mkorucu          ###   ########.fr       */
-=======
-/*   Updated: 2023/01/29 21:40:20 by bkeklik          ###   ########.fr       */
->>>>>>> d2d2f83643564c042266b236180fc47a2ad2a574:listin/listing.c
+/*   Updated: 2023/01/30 14:45:38 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

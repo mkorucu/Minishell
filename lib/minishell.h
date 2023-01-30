@@ -85,19 +85,19 @@ typedef struct s_process
 
 typedef struct s_data
 {
-	int		ac;
-	int		parent_pid;
-	int		process_count;
-	int 	ignore;
-	char	*user;
-	char	**av;
-	char	**env;
-	char	**paths;
-	char	*read1;
-	char	**read2;
-	t_chain	*chain;
-	t_prompt	*prompt;
-    int     fail;
+	int			ac;
+	int			parent_pid;
+	int			process_count;
+	int 		ignore;
+	char		*user;
+	char		**av;
+	char		**env;
+	char		**paths;
+	char		*read1;
+	char		**read2;
+	t_chain		*chain;
+	t_process	*process;
+    int     	fail;
 }		t_data;
 
 extern t_data crime;

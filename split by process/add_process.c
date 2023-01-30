@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_token.c                                       :+:      :+:    :+:   */
+/*   add_process.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 21:47:57 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/01/30 16:15:23 by mkorucu          ###   ########.fr       */
+/*   Created: 2023/01/30 14:51:42 by mkorucu           #+#    #+#             */
+/*   Updated: 2023/01/30 15:40:27 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../lib/minishell.h"
 
-void	free_token(void)
+void	add_process(t_process **list, t_process *new_process)
 {
-	t_token		*tmp;
-	t_token		*token;
-
-	token = g_ms.token;
-	while (token)
-	{
-		free(token->str);
-		token = token->next;
-	}
-	token = g_ms.token;
-	while (token)
-	{
-		tmp = token;
-		token = token->next;
-		free(tmp);
+	t_process	*curr;
+	
+	curr = *list;
+	if (!curr)
+		*list = new_process;
+	else
+	{	
+		while (!curr)
+			curr = curr->next;
+		curr->next = new_process;
+		new_process->prev = curr;
 	}
 }
