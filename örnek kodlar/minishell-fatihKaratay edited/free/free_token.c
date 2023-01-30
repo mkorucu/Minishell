@@ -6,7 +6,7 @@
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 21:47:57 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/01/29 21:20:52 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/01/30 16:19:28 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,6 @@ void	free_token(void)
 	t_token		*tmp;
 	t_token		*token;
 
-	token = g_ms.token;
-	while (token)
-	{
-		//free(token->str);
-		token = token->next;
-	}
 	token = g_ms.token;
 	while (token)
 	{

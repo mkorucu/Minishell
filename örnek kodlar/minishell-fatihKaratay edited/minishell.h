@@ -6,7 +6,7 @@
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:24:38 by scakmak           #+#    #+#             */
-/*   Updated: 2023/01/29 20:02:35 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/01/30 15:09:40 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ char		*dollar(char *str);
 void		free_process(void);
 void		close_all_fd(void);
 char		*get_env(char *str);
-t_process	*init_process(void);
+void		init_process(t_process **new_process);
 void		token_err(int type);
 void		tokenize(char *str);
 void		set_env(char **env);

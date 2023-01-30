@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkaratay <fkaratay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:08:25 by fkaratay          #+#    #+#             */
-/*   Updated: 2022/10/13 01:33:38 by fkaratay         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:08:34 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	lexer(void)
 		{
 			if (token->type == PIPE)
 				token = token->next;
-			process = init_process();
+			init_process(&process);
 			process_addback(&g_ms.process, process);
 			g_ms.process_count++;
 		}
