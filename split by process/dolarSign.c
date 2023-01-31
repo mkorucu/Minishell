@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dollar.c                                           :+:      :+:    :+:   */
+/*   dolarSign.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 21:55:44 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/01/31 12:26:55 by mkorucu          ###   ########.fr       */
+/*   Created: 2023/01/31 12:03:51 by mkorucu           #+#    #+#             */
+/*   Updated: 2023/01/31 12:14:24 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../lib/minishell.h"
 
 int	valid_op(char c)
 {
@@ -27,9 +27,9 @@ int	check_dollar(char *str)
 	int		double_quote;
 
 	i = 0;
-	single_quote = TRUE;
-	double_quote = FALSE;
-	while (str[i] && str[i] != DOLLAR_OP)
+	single_quote = 1;
+	double_quote = 0;
+	while (str[i] && str[i] != '$')
 	{
 		if (str[i] == SINGLE_QUOTE)
 			single_quote = double_quote;
@@ -37,8 +37,8 @@ int	check_dollar(char *str)
 			double_quote = !double_quote;
 		i++;
 	}
-	if (!valid_op(*(ft_strchr(str, DOLLAR_OP) + 1)))
-		return (FALSE);
+	if (!valid_op(*(ft_strchr(str, '$') + 1)))
+		return (1);
 	return (single_quote);
 }
 
@@ -65,7 +65,7 @@ char	*parse_dollar_op(char *str)
 
 	i = 0;
 	result = NULL;
-	data = get_str(str, &i, DOLLAR_OP);
+	data = get_str(str, &i, '$');
 	push_new_str(&result, data);
 	first = i;
 	if (str[i] == '?' && ++i)
@@ -90,7 +90,7 @@ char	*dollar(char *str)
 	char	*new_str;
 
 	new_str = ft_strdup(str);
-	while (ft_strchr(new_str, DOLLAR_OP) && check_dollar(new_str))
+	while (ft_strchr(new_str, '$') && check_dollar(new_str))
 	{
 		tmp = new_str;
 		new_str = parse_dollar_op(new_str);
