@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:13:04 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/02/01 15:50:16 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/01 17:25:01 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	skip_whitespace(char **str, char **head)
 void	parse_token_string(char **str)
 {
 	int		len;
-	char	*head = NULL;
+	char	*head;
 	char	*token_str;
 
 	while (**str && str_check(&(*str)))

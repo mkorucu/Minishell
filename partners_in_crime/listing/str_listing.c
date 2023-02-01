@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 21:39:45 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/01 15:28:53 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/01 17:25:32 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	string_found(char **str)
 {
 	char	type;
 
-	if (*str == '"')
+	if (**str == '"')
 		type = DOUBLE_QUOTE;
-	if (*str == '\'')
+	if (**str == '\'')
 		type = SINGLE_QUOTE;
 	(*str)++;
 	while (**str)
@@ -45,10 +45,10 @@ void	string_found(char **str)
 		if (**str == type)
 		{
 			(*str)++;
-			if (str_check(**str))
+			if (str_check(&(*str)))
 				break ;
 			else
-				while (**str && str_check(**str))
+				while (**str && !(str_check(&(*str))))
 					(*str)++;
 			return ;
 		}
@@ -62,14 +62,14 @@ void	str_listing(char **str)
 	char	*head;
 	char	*token_str;
 
-	while (**str && **str == ' ' || **str == '\t')
+	while (**str && str_check(&(*str)))
 		(*str)++;
-	*head = *str;
-	if (**str && **str == DOUBLE_QUOTE || **str == SINGLE_QUOTE)
-		string_found(str);
+	head = *str;
+	if (**str && ((**str == DOUBLE_QUOTE) || (**str == SINGLE_QUOTE)))
+		string_found(&(*str));
 	else
 	{
-		if (!(str_check(**str)))
+		if (!(str_check(&(*str))))
 		{
 			while (**str)
 				*str++;
