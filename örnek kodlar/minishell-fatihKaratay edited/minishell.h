@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:24:38 by scakmak           #+#    #+#             */
-/*   Updated: 2023/01/30 15:09:40 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/01 11:01:48 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <signal.h>
 # include <sys/ioctl.h>
 
+# define MAGENTA "\001\033[1;95m\002"
 # define TRUE 1
 # define FALSE 0
 # define DOLLAR_OP '$'

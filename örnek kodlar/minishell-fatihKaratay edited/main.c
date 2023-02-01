@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:14:23 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/01/29 21:28:09 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/01 11:01:32 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	main(int ac, char **av, char **env)
 {
 	char	*input2;
 	char	*input;
+	char	*color;
 	init_app(env);
 	set_env(env);
 	set_paths();
@@ -68,7 +69,8 @@ int	main(int ac, char **av, char **env)
 		signal(SIGQUIT, SIG_IGN);
 		write(1, "\033[32m", 5);
 		input2 = ft_strjoin(g_ms.user," minishell_> ");
-		input = readline(input2);
+		color = ft_strjoin(MAGENTA, input2);
+		input = readline(color);
 		write(1, "\033[0m", 4);
 		ctrl_d(input);
 		if (g_ms.ignore)
