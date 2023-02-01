@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:13:04 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/02/01 15:44:55 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/01 15:50:16 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	parse_token_string(char **str)
 
 	while (**str && str_check(&(*str)))
 		(*str)++;
-	*head = *(*str);
+	head = (*str);
 	if (**str && ((**str == DOUBLE_QUOTE) || (**str == SINGLE_QUOTE)))
 		find_end_pos(&(*str));
 	else
