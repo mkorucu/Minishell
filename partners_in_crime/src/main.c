@@ -6,11 +6,13 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:44:53 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/01 13:49:37 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/01 14:05:47 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_data	g_crime;
 
 void	start(char *input)
 {
@@ -40,11 +42,10 @@ int	main(int ac, char **av, char **env)
 	init(env);
 	while (av && ac)
 	{
-		signal(SIGINT, handle_sigint);
+		signal(SIGINT, &handle_sigint);
 		signal(SIGQUIT, SIG_IGN);
 		color = prompt();
 		input = readline(color);
-		handle_exit(input);
 		//if (g_crime.ignore) // burası
 		start(input); //Burası
 		free(input);

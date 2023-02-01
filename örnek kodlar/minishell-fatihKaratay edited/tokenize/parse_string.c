@@ -3,17 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   parse_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkaratay <fkaratay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:13:04 by fkaratay          #+#    #+#             */
-/*   Updated: 2022/10/13 11:10:00 by fkaratay         ###   ########.fr       */
+/*   Updated: 2023/02/01 14:52:06 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	find_end_pos(char **str, char type)
+void	find_end_pos(char **str)
 {
+	char	type;
+
+	if (*str == '"')
+		type = DOUBLE_QUOTE;
+	if (*str == '\'')
+		type = SINGLE_QUOTE;
 	(*str)++;
 	while (**str)
 	{
@@ -50,19 +56,44 @@ void	skip_whitespace(char **str, char **head)
 	*head = *str;
 }
 
+int	str_check(char **str)
+{
+	if (!*str)
+		return (0);
+	if (*str[0] == '<' && *str[1] == '<')
+		return (HERE_DOC);
+	if (*str[0] == '>' && *str[1] == '>')
+		return (RED_APPEND);
+	if (*str[0] == '<')
+		return (RED_INPUT);
+	if (*str[0] == '>')
+		return (RED_OUTPUT);
+	if (*str[0] == '|')
+		return (PIPE);
+	if (*str == ' ' || *str == '\t')
+		return (1);
+	return (0);
+}
+
+
 void	parse_token_string(char **str)
 {
 	int		len;
 	char	*head;
 	char	*token_str;
 
-	skip_whitespace(str, &head);
-	if (**str && **str == DOUBLE_QUOTE)
-		find_end_pos(str, DOUBLE_QUOTE);
-	else if (**str && **str == SINGLE_QUOTE)
-		find_end_pos(str, SINGLE_QUOTE);
+	while (**str && **str == ' ' || **str == '\t')
+		(*str)++;
+	*head = *str;
+	if (**str &&(**str == DOUBLE_QUOTE) || (**str == SINGLE_QUOTE))
+		find_end_pos(**str);
 	else
-		without_quote_parse(str);
+		
+		if (!(str_check(**str)))
+		{
+		while (**str)	
+				*str++;
+		}
 	len = *str - head;
 	if (len > 0)
 	{
@@ -70,3 +101,4 @@ void	parse_token_string(char **str)
 		token_addback(&g_ms.token, init_token(token_str, STRING), 0);
 	}
 }
+

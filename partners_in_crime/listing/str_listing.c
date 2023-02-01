@@ -6,56 +6,38 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 21:39:45 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/01/29 22:02:10 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/01 14:54:44 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minishell.h"
 
-void	find_end_pos(char **str, char type)
+int	str_check(char **str)
 {
-	(*str)++;
-	while (**str)
-	{
-		if (**str == type)
-		{
-			(*str)++;
-			if (is_whitespace(**str) || is_operator(*str))
-				break ;
-			else
-				while (**str && !is_whitespace(**str) && !is_operator(*str))
-					(*str)++;
-			return ;
-		}
-		(*str)++;
-	}
+	if (!*str)
+		return (0);
+	if (*str[0] == '<' && *str[1] == '<')
+		return (HERE_DOC);
+	if (*str[0] == '>' && *str[1] == '>')
+		return (RED_APPEND);
+	if (*str[0] == '<')
+		return (RED_INPUT);
+	if (*str[0] == '>')
+		return (RED_OUTPUT);
+	if (*str[0] == '|')
+		return (PIPE);
+	if (*str == ' ' || *str == '\t')
+		return (1);
+	return (0);
 }
 
-void	without_quote_parse(char **str)
+void	string_found(char **str)
 {
-	while (**str)
-	{
-		if (is_whitespace(**str))
-			break ;
-		if (is_operator(*str))
-			break ;
-		(*str)++;
-	}
-}
+	char	type;
 
-void	skip_whitespace(char **str, char **head)
-{
-	while (**str && is_whitespace(**str))
-		(*str)++;
-	*head = *str;
-}
-
-void	find_end_pos(char **str)
-{
-	char type;
-	if(*str == '"')
+	if (*str == '"')
 		type = DOUBLE_QUOTE;
-	if(*str == '\'')
+	if (*str == '\'')
 		type = SINGLE_QUOTE;
 	(*str)++;
 	while (**str)
@@ -63,10 +45,10 @@ void	find_end_pos(char **str)
 		if (**str == type)
 		{
 			(*str)++;
-			if (is_whitespace(**str) || is_operator(*str))
+			if (str_check(**str))
 				break ;
 			else
-				while (**str && !is_whitespace(**str) && !is_operator(*str))
+				while (**str && str_check(**str))
 					(*str)++;
 			return ;
 		}
@@ -74,23 +56,29 @@ void	find_end_pos(char **str)
 	}
 }
 
-
-
-void	parse_token_string(char **str)
+void	str_listing(char **str)
 {
 	int		len;
 	char	*head;
 	char	*token_str;
 
-	skip_whitespace(str, &head);
-	if (**str && (**str == DOUBLE_QUOTE || **str == SINGLE_QUOTE))
-		find_end_pos(str);
+	while (**str && **str == ' ' || **str == '\t')
+		(*str)++;
+	*head = *str;
+	if (**str && **str == DOUBLE_QUOTE || **str == SINGLE_QUOTE)
+		string_found(str);
 	else
-		without_quote_parse(str);
+	{
+		if (!(str_check(**str)))
+		{
+			while (**str)
+				*str++;
+		}
+	}
 	len = *str - head;
 	if (len > 0)
 	{
 		token_str = ft_substr(head, 0, len);
-		token_addback(&g_ms.token, init_token(token_str, STRING), 0);
+		add_list(&g_crime.chain, new_list(token_str, STRING));
 	}
 }

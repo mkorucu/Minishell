@@ -63,7 +63,6 @@ enum e_quotetype
 	SINGLE_QUOTE = '\'',
 };
 
-
 typedef struct s_chain
 {
 	char			*str;
@@ -88,16 +87,13 @@ typedef struct s_data
 	int			ac;
 	int			parent_pid;
 	int			process_count;
-	int 		ignore;
+	int			ignore;
 	char		*user;
-	char		**av;
 	char		**env;
 	char		**paths;
-	char		*read1;
-	char		**read2;
 	t_chain		*chain;
 	t_process	*process;
-    int     	fail;
+	int			fail;
 }		t_data;
 
 extern t_data g_crime;
