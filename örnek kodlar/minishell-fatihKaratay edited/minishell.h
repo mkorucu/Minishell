@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:24:38 by scakmak           #+#    #+#             */
-/*   Updated: 2023/02/01 11:01:48 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/01 11:50:35 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int			contain_heredoc(t_process *process);
 char		**ft_split(char const *str, char c);
 void		*ft_calloc(size_t count, size_t size);
 char		**push_array(char **arg_arr, char *str);
-void		push_new_str(char **new_str, char *str);
+void		push_new_str(char **trimed, char *removed);
 t_token		*init_token(char *str, enum e_ttype type);
 char		*ft_strjoin(char const *s1, char const *s2);
 int			ft_strcmp(const char *str1, const char *str2);

@@ -3,75 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkaratay <fkaratay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 21:51:54 by fkaratay          #+#    #+#             */
-/*   Updated: 2022/10/13 11:06:45 by fkaratay         ###   ########.fr       */
+/*   Updated: 2023/02/01 11:54:43 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	push_new_str(char **new_str, char *str)
+void	push_new_str(char **trimed, char *removed)
 {
 	char	*tmp;
 
-	if (!(*new_str))
+	if (!(*trimed))
 	{
-		*new_str = ft_strdup(str);
-		free(str);
+		*trimed = ft_strdup(removed);
+		free(removed);
 		return ;
 	}
-	tmp = *new_str;
-	*new_str = ft_strjoin(*new_str, str);
+	tmp = *trimed;
+	*trimed =  ft_strjoin(*trimed, removed);
 	free(tmp);
-	free(str);
+	free(removed);
 }
 
 char	*clean_quote_with_type(char *str, int *pos, char type)
 {
-	int		first;
+	int		start;
 	char	*new_str;
 
-	(*pos)++;
-	first = *pos;
+	++*pos;
+	start = *pos;
 	while (str[*pos] && str[*pos] != type)
-		(*pos)++;
-	new_str = ft_substr(str, first, *pos - first);
+		++*pos;
+	new_str = ft_substr(str, start, *pos - start);
 	if (str[*pos])
-		(*pos)++;
+		++*pos;
 	return (new_str);
 }
 
-static char	*get_str(char *str, int	*pos)
+static char	*get_str(char *str, int	*i)
 {
-	int	first;
+	int	start;
 
-	first = *pos;
-	while (str[*pos] && str[*pos] != DOUBLE_QUOTE && str[*pos] != SINGLE_QUOTE)
-		(*pos)++;
-	return (ft_substr(str, first, *pos - first));
+	start = *i;
+	while (str[*i] && str[*i] != DOUBLE_QUOTE && str[*i] != SINGLE_QUOTE)
+		(*i)++;
+	return (ft_substr(str, start, *i - start));
 }
 
 char	*clean_quote(char *str)
 {
-	int		i;
-	char	*data;
-	char	*result;
+	int		curr;
+	char	*removed;
+	char	*trimed;
 
-	i = 0;
-	result = NULL;
+	curr = 0;
+	trimed = NULL;
 	str = dollar(str);
-	while (str[i])
+	while (str[curr])
 	{
-		if (str[i] == DOUBLE_QUOTE)
-			data = clean_quote_with_type(str, &i, DOUBLE_QUOTE);
-		else if (str[i] == SINGLE_QUOTE)
-			data = clean_quote_with_type(str, &i, SINGLE_QUOTE);
+		if (str[curr] == DOUBLE_QUOTE || str[curr] == SINGLE_QUOTE)
+			removed = clean_quote_with_type(str, &curr, str[curr]);
 		else
-			data = get_str(str, &i);
-		push_new_str(&result, data);
+			removed = get_str(str, &curr);
+		push_new_str(&trimed, removed);
 	}
 	free(str);
-	return (result);
+	return (trimed);
 }
