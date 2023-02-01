@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 14:46:31 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/01 10:48:40 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/01 15:20:01 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	list_arguments(t_chain **chain, t_process *process)
 	else
 	{
 		str = remove_quotes((*chain)->str);
-		process->redirects= add_array(process->redirects, str);
+		process->redirects = add_array(process->redirects, str);
 		*chain = (*chain)->next;
 		if (!(*chain) || (*chain)->type != STRING)
 		{
@@ -39,7 +39,6 @@ int	list_arguments(t_chain **chain, t_process *process)
 		process->execute = add_array(process->execute, str);
 	}
 	return (1);
-	
 }
 
 int	listing_process(void)
@@ -48,19 +47,19 @@ int	listing_process(void)
 	t_chain		*c_curr;
 
 	c_curr = g_crime.chain;
-	
-	while(c_curr)
+
+	while (c_curr)
 	{
 		if (c_curr->type == PIPE || c_curr->prev == NULL)
 		{
 			if (c_curr->type == PIPE)
 				c_curr = c_curr->next;
 			init_process(&p_curr);
-			add_process(&g_crime.process,p_curr);
+			add_process(&g_crime.process, p_curr);
 			g_crime.process_count++;
 		}
 		if (!c_curr)
-			break;
+			break ;
 		if (!list_arguments(&c_curr, p_curr))
 			return (0);
 		if (c_curr)

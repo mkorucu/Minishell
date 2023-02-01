@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:43:26 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/01 11:55:13 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/01 15:19:55 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ void	add_new_str(char **trimed, char *removed)
 		return ;
 	}
 	tmp = *trimed;
-	*trimed =  ft_strjoin(*trimed, removed);
+	*trimed = ft_strjoin(*trimed, removed);
 	free(tmp);
 	free(removed);
 }
+
 char	*clean_quotes(char *str, int *curr, char type)
 {
 	int		start;

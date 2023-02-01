@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_process.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 14:51:42 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/01/30 15:40:27 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/01 15:18:11 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	add_process(t_process **list, t_process *new_process)
 {
 	t_process	*curr;
-	
+
 	curr = *list;
 	if (!curr)
 		*list = new_process;

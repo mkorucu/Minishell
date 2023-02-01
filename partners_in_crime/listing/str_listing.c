@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 21:39:45 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/01 14:54:44 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/01 15:28:53 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	str_check(char **str)
 {
-	if (!*str)
+	if (!**str)
 		return (0);
 	if (*str[0] == '<' && *str[1] == '<')
 		return (HERE_DOC);

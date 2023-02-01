@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_array.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:04:36 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/01 11:49:01 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/01 15:18:03 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	**add_array(char **arr, char *new_str)
 {
-	int	i;
-	int	len;
+	int		i;
+	int		len;
 	char	**new_arr;
 
 	len = 0;
