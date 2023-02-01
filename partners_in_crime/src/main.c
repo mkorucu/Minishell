@@ -6,13 +6,13 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:44:53 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/01 13:11:50 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/01 13:49:37 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	start(char *input) 
+void	start(char *input)
 {
 	if (*input)
 		return ;

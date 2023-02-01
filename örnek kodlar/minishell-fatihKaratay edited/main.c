@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:14:23 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/02/01 13:05:43 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/01 13:49:44 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	init_shell(char *input)
 	start_cmd();
 	free_process();
 }
+
 void	ctrl_c(int sig)
 {
 	(void)sig;
@@ -53,12 +54,12 @@ void	ctrl_d(char *input)
 	}
 }
 
-
 int	main(int ac, char **av, char **env)
 {
 	char	*input2;
 	char	*input;
 	char	*color;
+
 	init_app(env);
 	set_env(env);
 	set_paths();
@@ -68,7 +69,7 @@ int	main(int ac, char **av, char **env)
 		signal(SIGINT, &ctrl_c);
 		signal(SIGQUIT, SIG_IGN);
 		write(1, "\033[32m", 5);
-		input2 = ft_strjoin(g_ms.user," minishell_> ");
+		input2 = ft_strjoin(g_ms.user, " minishell_> ");
 		color = ft_strjoin(MAGENTA, input2);
 		write(1, "\033[0m", 4);
 		input = readline(color);
