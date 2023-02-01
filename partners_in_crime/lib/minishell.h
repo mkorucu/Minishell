@@ -32,6 +32,15 @@ enum	enum_builtin_types
 	EXPORT
 };
 
+enum e_ctype
+{
+	C_PIPE = '|',
+	C_HEREDOC = '>>',
+	C_INPUT = '<',
+	C_APPEND = '<<',
+	C_OUTPUT = '>',
+};
+
 enum e_ttype
 {
 	PIPE = 1,

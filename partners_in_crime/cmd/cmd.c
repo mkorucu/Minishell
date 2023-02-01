@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env.c                                          :+:      :+:    :+:   */
+/*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 18:59:00 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/01 20:53:31 by bkeklik          ###   ########.fr       */
+/*   Created: 2023/02/01 17:45:12 by bkeklik           #+#    #+#             */
+/*   Updated: 2023/02/01 20:57:25 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minishell.h"
 
-char	*get_env(char *str)
+void	start_cmd(void)
 {
-	int		i;
-	int		len;
-	char	*curr;
+	t_process	*process;
 
-	curr = ft_strjoin(str, "=");
-	i = -1;
-	len = ft_strlen(curr);
-	while (g_crime.env[++i])
-	{
-		if (!ft_strncmp(g_crime.env[i], curr, len))
-		{
-			free(curr);
-			return (ft_strdup(&g_crime.env[i][len]));
-		}
-	}
-	free (curr);
-	return (ft_calloc(sizeof(char *), 1));
+	process = g_crime.process;
+	if (!process)
+		return ;
+    
 }

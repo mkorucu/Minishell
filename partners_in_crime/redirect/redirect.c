@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env.c                                          :+:      :+:    :+:   */
+/*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 18:59:00 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/01 20:53:31 by bkeklik          ###   ########.fr       */
+/*   Created: 2023/02/01 20:57:54 by bkeklik           #+#    #+#             */
+/*   Updated: 2023/02/01 21:00:30 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minishell.h"
 
-char	*get_env(char *str)
+void	fill_all_heredoc(void)
 {
-	int		i;
-	int		len;
-	char	*curr;
+	int			i;
+	char		**redirects;
+	t_process	*process;
 
-	curr = ft_strjoin(str, "=");
-	i = -1;
-	len = ft_strlen(curr);
-	while (g_crime.env[++i])
+	process = g_crime.process;
+	while (process)
 	{
-		if (!ft_strncmp(g_crime.env[i], curr, len))
+		i = 0;
+		redirects = process->redirects;
+		while (redirects[i] && !(g_crime.ignore))
 		{
-			free(curr);
-			return (ft_strdup(&g_crime.env[i][len]));
+			if (redirects[i] == C_HEREDOC)
+				heredoc(process->heredoc_fd, redirects[i + 1]);
+			i += 2;
 		}
+		process = process->next;
 	}
-	free (curr);
-	return (ft_calloc(sizeof(char *), 1));
 }
