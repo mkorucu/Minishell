@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 18:59:00 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/01/29 19:23:16 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/01 10:49:25 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ char	*get_env(char *str)
 	curr = ft_strjoin(str, "=");
 	i = -1;
 	len = ft_strlen(curr);
-	while (crime.env[++i])
+	while (g_crime.env[++i])
 	{
-		if (!ft_strncmp(crime.env[i], curr, len))
+		if (!ft_strncmp(g_crime.env[i], curr, len))
 		{
 			free(curr);
-			return (ft_strdup(&crime.env[i][len]));
+			return (ft_strdup(&g_crime.env[i][len]));
 		}
 	}
 	free (curr);

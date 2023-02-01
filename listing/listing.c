@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 20:53:56 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/01/30 14:45:38 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/01 10:48:17 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ void	listing(char *input)
 	while(*input)
 	{
 		if (!ft_strncmp(input, ">>", 2))
-			input += add_list(&crime.chain, new_list(">>", RED_APPEND)); 
+			input += add_list(&g_crime.chain, new_list(">>", RED_APPEND)); 
 		else if (!ft_strncmp(input, "<<", 2))
-			input += add_list(&crime.chain, new_list("<<", HERE_DOC));
+			input += add_list(&g_crime.chain, new_list("<<", HERE_DOC));
 		else if  (!ft_strncmp(input, "|", 1))
-			input += add_list(&crime.chain, new_list("|", PIPE));
+			input += add_list(&g_crime.chain, new_list("|", PIPE));
 		else if (!ft_strncmp(input, "<", 1))
-			input += add_list(&crime.chain, new_list("<", RED_INPUT));
+			input += add_list(&g_crime.chain, new_list("<", RED_INPUT));
 		else if (!ft_strncmp(input, ">", 1))
-			input += add_list(&crime.chain, new_list(">", RED_OUTPUT));
+			input += add_list(&g_crime.chain, new_list(">", RED_OUTPUT));
 	}		
 }

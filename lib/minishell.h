@@ -100,7 +100,7 @@ typedef struct s_data
     int     	fail;
 }		t_data;
 
-extern t_data crime;
+extern t_data g_crime;
 
 int		main(int ac, char **av, char **env);
 void	handle_sigint(int sig);

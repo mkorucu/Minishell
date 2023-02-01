@@ -7,8 +7,8 @@ void	init_env(char **env)
 
 	while(env[i])
 		i++;
-	crime.env = ft_calloc(sizeof(char*), i + 1);
+	g_crime.env = ft_calloc(sizeof(char*), i + 1);
 	while (i--)
-		crime.env[i] = ft_strdup(env[i]);
-	crime.user = get_env("USER");
+		g_crime.env[i] = ft_strdup(env[i]);
+	g_crime.user = get_env("USER");
 }

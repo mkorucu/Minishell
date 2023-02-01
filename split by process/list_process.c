@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 14:46:31 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/01/30 18:04:54 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/01 10:48:40 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	listing_process(void)
 	t_process	*p_curr;
 	t_chain		*c_curr;
 
-	c_curr = crime.chain;
+	c_curr = g_crime.chain;
 	
 	while(c_curr)
 	{
@@ -56,8 +56,8 @@ int	listing_process(void)
 			if (c_curr->type == PIPE)
 				c_curr = c_curr->next;
 			init_process(&p_curr);
-			add_process(&crime.process,p_curr);
-			crime.process_count++;
+			add_process(&g_crime.process,p_curr);
+			g_crime.process_count++;
 		}
 		if (!c_curr)
 			break;

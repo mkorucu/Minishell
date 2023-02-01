@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 18:51:24 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/01/29 19:59:40 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/01 10:47:55 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	init_path(void)
 {
 	char	*path;
 
-	if (crime.paths)
-		kill_array(crime.paths);
+	if (g_crime.paths)
+		kill_array(g_crime.paths);
 	path = get_env("PATH");
 	if (!(*path))
-		crime.paths = NULL;
+		g_crime.paths = NULL;
 	else
-		crime.paths = ft_split(path, ':');
+		g_crime.paths = ft_split(path, ':');
 	free(path);
 }
