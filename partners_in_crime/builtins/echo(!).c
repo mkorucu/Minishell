@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   echo(!).c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 19:07:57 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/01 10:47:12 by bkeklik          ###   ########.fr       */
+/*   Created: 2023/01/29 19:07:23 by bkeklik           #+#    #+#             */
+/*   Updated: 2023/02/01 12:45:48 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
-void	builtin_env(void)
+void	builtin_echo(char **execute)
 {
-		char	**env;
+	int	i;
+	int	flag;
 
-		env = g_crime.env;
-		while (*env)
-		{
-			printf("%s\n",*env);
-			env++;
-		}
-		if (!g_crime.parent_pid == getpid())
-			exit (EXIT_SUCCESS);
+	i = 1;
+	while (execute[i] && ft_strncmp(execute[i], "-n", 3))
+		i++;
+	flag = 1;
+	if (i > 1)
+		flag = 0;
+	while (execute[i])
+	{
+		printf("%s\n", execute[i]);
+		if (execute[i + 1])
+			write(1, " ", 1);
+		i++;
+	}
+	if (flag)
+		write(1, "\n", 1);
+	if (!is_parent())
+		exit(EXIT_SUCCESS);
 }

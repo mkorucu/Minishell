@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   kill_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:24:53 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/01/29 19:49:15 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/01 13:13:30 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minishell.h"
 
-void	kill_array(char **arr)
+void	kill_him(char **arr)
 {
 	int	i;
 
 	i = 0;
-	while(arr[i])
+	while (arr[i])
 	{
 		free(arr[i]);
 		i++;

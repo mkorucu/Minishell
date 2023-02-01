@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:14:23 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/02/01 11:01:32 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/01 13:05:43 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int	main(int ac, char **av, char **env)
 		write(1, "\033[32m", 5);
 		input2 = ft_strjoin(g_ms.user," minishell_> ");
 		color = ft_strjoin(MAGENTA, input2);
-		input = readline(color);
 		write(1, "\033[0m", 4);
+		input = readline(color);
 		ctrl_d(input);
 		if (g_ms.ignore)
 		{

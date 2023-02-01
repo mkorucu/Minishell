@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_path.c                                        :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 18:51:24 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/01 10:47:55 by bkeklik          ###   ########.fr       */
+/*   Created: 2023/01/29 19:07:57 by bkeklik           #+#    #+#             */
+/*   Updated: 2023/02/01 12:45:43 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minishell.h"
 
-void	init_path(void)
+void	builtin_env(void)
 {
-	char	*path;
+	char	**env;
 
-	if (g_crime.paths)
-		kill_array(g_crime.paths);
-	path = get_env("PATH");
-	if (!(*path))
-		g_crime.paths = NULL;
-	else
-		g_crime.paths = ft_split(path, ':');
-	free(path);
+	env = g_crime.env;
+	while (*env)
+	{
+		printf("%s\n",*env);
+			env++;
+	}
+	if (!g_crime.parent_pid == getpid())
+		exit (EXIT_SUCCESS);
 }
