@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:14:23 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/02/01 14:11:10 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/02 12:27:48 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	init_shell(char *input)
 	tokenize(input);
 	if (!lexer())
 		return ;
+	printf("%s\n%s\n",g_ms.process->execute[0],g_ms.process->execute[1]);
 	start_cmd();
 	free_process();
 }

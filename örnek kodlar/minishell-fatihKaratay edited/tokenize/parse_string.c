@@ -6,50 +6,24 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:13:04 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/02/01 17:25:01 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/01 15:43:14 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-
-int	str_check(char **str)
+void	find_end_pos(char **str, char type)
 {
-	if (!**str)
-		return (0);
-	if (*str[0] == '<' && *str[1] == '<')
-		return (HERE_DOC);
-	if (*str[0] == '>' && *str[1] == '>')
-		return (RED_APPEND);
-	if (*str[0] == '<')
-		return (RED_INPUT);
-	if (*str[0] == '>')
-		return (RED_OUTPUT);
-	if (*str[0] == '|')
-		return (PIPE);
-	if ((*str[0] == ' ') || (*str[0] == '\t'))
-		return (1);
-	return (0);
-}
-
-void	find_end_pos(char **str)
-{
-	char	type;
-
-	if (**str == '"')
-		type = DOUBLE_QUOTE;
-	if (**str == '\'')
-		type = SINGLE_QUOTE;
 	(*str)++;
 	while (**str)
 	{
 		if (**str == type)
 		{
 			(*str)++;
-			if (str_check(&(*str)))
+			if (is_whitespace(**str) || is_operator(*str))
 				break ;
 			else
-				while (**str && !(str_check(&(*str))))
+				while (**str && !is_whitespace(**str) && !is_operator(*str))
 					(*str)++;
 			return ;
 		}
@@ -76,26 +50,19 @@ void	skip_whitespace(char **str, char **head)
 	*head = *str;
 }
 
-
 void	parse_token_string(char **str)
 {
 	int		len;
 	char	*head;
 	char	*token_str;
 
-	while (**str && str_check(&(*str)))
-		(*str)++;
-	head = (*str);
-	if (**str && ((**str == DOUBLE_QUOTE) || (**str == SINGLE_QUOTE)))
-		find_end_pos(&(*str));
+	skip_whitespace(str, &head);
+	if (**str && **str == DOUBLE_QUOTE)
+		find_end_pos(str, DOUBLE_QUOTE);
+	else if (**str && **str == SINGLE_QUOTE)
+		find_end_pos(str, SINGLE_QUOTE);
 	else
-	{
-		if (!(str_check(&(*str))))
-		{
-			while (**str)
-				(*str)++;
-		}
-	}	
+		without_quote_parse(str);
 	len = *str - head;
 	if (len > 0)
 	{
@@ -103,4 +70,3 @@ void	parse_token_string(char **str)
 		token_addback(&g_ms.token, init_token(token_str, STRING), 0);
 	}
 }
-
