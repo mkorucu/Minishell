@@ -39,6 +39,8 @@ enum e_ctype
 	C_INPUT = '<',
 	C_APPEND = '<<',
 	C_OUTPUT = '>',
+    DOUBLE_QUOTE = '"',
+    SINGLE_QUOTE = '\'',
 };
 
 enum e_ttype
@@ -64,12 +66,6 @@ enum	e_mini_error
 	MEM = 11,
 	IS_DIR = 12,
 	NOT_DIR = 13
-};
-
-enum e_quotetype
-{
-	DOUBLE_QUOTE = '"',
-	SINGLE_QUOTE = '\'',
 };
 
 typedef struct s_chain

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:24:38 by scakmak           #+#    #+#             */
-/*   Updated: 2023/02/01 11:50:35 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/04 20:00:00 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,17 @@ enum e_builtin_types
 	EXIT,
 	UNSET,
 	EXPORT
+};
+
+enum e_ctype
+{
+	C_PIPE = '|',
+	C_HEREDOC = '>>',
+	C_INPUT = '<',
+	C_APPEND = '<<',
+	C_OUTPUT = '>',
+    C_DOUBLE_QUOTE = '"',
+    C_SINGLE_QUOTE = '\'',
 };
 
 enum e_ttype
