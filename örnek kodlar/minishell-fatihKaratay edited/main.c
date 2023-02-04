@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:14:23 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/02/02 12:27:48 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/04 13:11:47 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,3 +89,4 @@ int	main(int ac, char **av, char **env)
 	}
 	exit(errno);
 }
+

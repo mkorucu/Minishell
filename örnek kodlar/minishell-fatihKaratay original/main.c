@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fkaratay <fkaratay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:14:23 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/02/01 10:44:49 by bkeklik          ###   ########.fr       */
+/*   Updated: 2022/10/13 15:23:54 by fkaratay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	init_shell(char *input)
 	start_cmd();
 	free_process();
 }
+
 void	ctrl_c(int sig)
 {
 	(void)sig;

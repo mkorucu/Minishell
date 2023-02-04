@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   output.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: fkaratay <fkaratay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:11:39 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/01/27 18:57:19 by mkorucu          ###   ########.fr       */
+/*   Updated: 2022/10/13 11:09:09 by fkaratay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	output(char *file, int mode)
 		fd = open(file, O_CREAT | O_WRONLY | O_APPEND, 0777);
 	if (fd == -1)
 	{
-		perror("mehmet");
+		perror("minishell");
 		if (is_parent())
 			return ;
 		else
