@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:24:38 by scakmak           #+#    #+#             */
-/*   Updated: 2023/02/06 15:35:30 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/06 20:41:06 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct s_minishell
 extern t_minishell	g_ms;
 
 int			lexer(void);
+size_t		ft_strlen2(const char **s);
 int			env_len(void);
 int			is_parent(void);
 void		start_cmd(void);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 21:51:54 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/02/01 11:54:43 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/06 20:28:22 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ void	push_new_str(char **trimed, char *removed)
 	*trimed =  ft_strjoin(*trimed, removed);
 	free(tmp);
 	free(removed);
+}
+
+
+
+void	close_quote(int sig)
+{
+	(void)sig;
+	g_ms.ignore = TRUE;
+	ioctl(STDIN_FILENO, TIOCSTI, "\n");
 }
 
 char	*clean_quote_with_type(char *str, int *pos, char type)

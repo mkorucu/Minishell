@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strlen2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/06 20:39:17 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/06 20:39:18 by bkeklik          ###   ########.fr       */
+/*   Created: 2022/01/09 12:14:04 by fkaratay          #+#    #+#             */
+/*   Updated: 2023/02/06 20:40:35 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../minishell.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen2(const char **s)
 {
 	unsigned int	i;
 
-	if (!s)
+	if (!*s)
 		return (0);
 	i = 0;
-	while (s[i])
+	while (*s[i])
 		i++;
 	return (i);
 }
