@@ -6,11 +6,22 @@
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 18:00:04 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/01/30 18:01:55 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/06 20:20:23 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minishell.h"
+
+void	vmd_err(char *str)
+{
+	errno = 127;
+
+	write(2, "minishell: ", 11);
+	write(2, str, ft_strlen(str));
+	write(2, ": command not found\n", 20);
+	if (!g_crime.parent_pid == getpid())
+		exit(errno);
+}
 
 void	chain_err(int type)
 {

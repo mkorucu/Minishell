@@ -6,7 +6,7 @@
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:14:23 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/02/06 20:14:31 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/06 20:46:25 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	init_shell(char *input)
 	tokenize(input);
 	if (!lexer())
 		return ;
-	printf("%s\n%s\n",g_ms.process->execute[0],g_ms.process->execute[1]);
 	start_cmd();
 	free_process();
 }
