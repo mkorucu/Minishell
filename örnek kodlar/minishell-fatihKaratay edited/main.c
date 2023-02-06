@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:14:23 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/02/06 20:39:00 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/06 20:46:25 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ int	main(int ac, char **av, char **env)
 	int i = 0;
 	int j = 0;
 	init_app(env);
-	set_env(env);
+	g_ms.env = env;
+	g_ms.user = get_env("USER");
 	set_paths();
 	while (ac && av)
 	{
