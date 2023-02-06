@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:24:38 by scakmak           #+#    #+#             */
-/*   Updated: 2023/02/04 20:00:00 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/06 15:35:30 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ enum e_builtin_types
 	EXPORT
 };
 
+#define	C_HEREDOC ">>"
+#define	C_APPEND "<<"
 enum e_ctype
 {
 	C_PIPE = '|',
-	C_HEREDOC = '>>',
 	C_INPUT = '<',
-	C_APPEND = '<<',
 	C_OUTPUT = '>',
     C_DOUBLE_QUOTE = '"',
     C_SINGLE_QUOTE = '\'',
