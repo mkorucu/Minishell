@@ -6,7 +6,7 @@
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:44:53 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/06 18:14:19 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/06 20:18:08 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int ac, char **av, char **env)
 	char	*color;
 
 	commit_an_offense();
-	init(env); // BU SATIR NİÇİN VAR?
+	init(env);
 	g_crime.env = env;
 	
 	while (av && ac)

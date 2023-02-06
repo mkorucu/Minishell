@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkaratay <fkaratay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:23:18 by fkaratay          #+#    #+#             */
-/*   Updated: 2022/10/13 15:42:32 by fkaratay         ###   ########.fr       */
+/*   Updated: 2023/02/06 20:15:06 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	add_env(char *str)
 		i++;
 	}
 	new_env[i] = ft_strdup(str);
-	free_array(g_ms.env);
 	g_ms.env = new_env;
 }
 
