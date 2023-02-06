@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   str_listing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 21:39:45 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/01 17:25:32 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/06 18:47:08 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minishell.h"
 
-int	str_check(char **str)
+int	operator_check(char **str)
 {
 	if (!**str)
 		return (0);
@@ -45,10 +45,10 @@ void	string_found(char **str)
 		if (**str == type)
 		{
 			(*str)++;
-			if (str_check(&(*str)))
+			if (operator_check(&(*str)))
 				break ;
 			else
-				while (**str && !(str_check(&(*str))))
+				while (**str && !(operator_check(&(*str))))
 					(*str)++;
 			return ;
 		}
@@ -62,14 +62,14 @@ void	str_listing(char **str)
 	char	*head;
 	char	*token_str;
 
-	while (**str && str_check(&(*str)))
+	while (**str && operator_check(&(*str)))
 		(*str)++;
 	head = *str;
 	if (**str && ((**str == DOUBLE_QUOTE) || (**str == SINGLE_QUOTE)))
 		string_found(&(*str));
 	else
 	{
-		if (!(str_check(&(*str))))
+		if (!(operator_check(&(*str))))
 		{
 			while (**str)
 				*str++;

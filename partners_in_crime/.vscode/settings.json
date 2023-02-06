@@ -4,6 +4,7 @@
         "istream": "c",
         "locale": "c",
         "ostream": "c",
-        "sstream": "c"
+        "sstream": "c",
+        "minishell.h": "c"
     }
 }

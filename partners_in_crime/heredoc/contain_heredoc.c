@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_env.c                                         :+:      :+:    :+:   */
+/*   contain_heredoc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 10:55:34 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/01 10:56:23 by bkeklik          ###   ########.fr       */
+/*   Created: 2023/02/06 18:43:13 by mkorucu           #+#    #+#             */
+/*   Updated: 2023/02/06 18:49:53 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minishell.h"
 
-void	init_env(char **env)
+void	contain_heredoc(t_process	*process)
 {
 	int	i;
-	int	j;
-
-	while (env[i])
+	
+	i = 0;
+	while(process->redirects[i])
+	{
+		if (operator_check(process->redirects[i]) == HERE_DOC)
+			return (1);
 		i++;
-	g_crime.env = ft_calloc(sizeof(char *), i + 1);
-	while (i--)
-		g_crime.env[i] = ft_strdup(env[i]);
-	g_crime.user = get_env("USER");
+	}
+	return (0);
 }

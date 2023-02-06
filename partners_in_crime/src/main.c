@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:44:53 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/01 14:05:47 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/06 18:14:19 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../lib/minishell.h"
 
-t_data	g_crime;
 
 void	start(char *input)
 {
@@ -39,7 +38,9 @@ int	main(int ac, char **av, char **env)
 	char	*color;
 
 	commit_an_offense();
-	init(env);
+	init(env); // BU SATIR NİÇİN VAR?
+	g_crime.env = env;
+	
 	while (av && ac)
 	{
 		signal(SIGINT, &handle_sigint);

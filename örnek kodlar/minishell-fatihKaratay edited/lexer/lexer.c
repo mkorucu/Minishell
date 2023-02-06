@@ -6,39 +6,40 @@
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:08:25 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/01/30 17:55:57 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/06 17:59:43 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+
 int	append_arguments(t_token **token, t_process *process)
 {
-	char		*data;
+	char	*str;
 
 	if ((*token)->type == STRING)
 	{
-		data = clean_quote((*token)->str);
-		process->execute = push_array(process->execute, data);
+		str = clean_quote((*token)->str); //DAHA YAZMADIM
+		process->execute = push_array(process->execute, str);
 	}
 	else
 	{
-		data = clean_quote((*token)->str);
-		process->redirects = push_array(process->redirects, data);
+		str = clean_quote((*token)->str);
+		process->redirects = push_array(process->redirects, str);
 		*token = (*token)->next;
 		if (!(*token) || (*token)->type != STRING)
 		{
 			free_token();
-			if (!(*token))
+			if (!(token))
 				token_err(0);
 			else
 				token_err((*token)->type);
-			return (FALSE);
+			return (0);
 		}
-		data = clean_quote((*token)->str);
-		process->redirects = push_array(process->redirects, data);
+		str = clean_quote((*token)->str);
+		process->execute = push_array(process->execute, str);
 	}
-	return (TRUE);
+	return (1);
 }
 
 int	lexer(void)
