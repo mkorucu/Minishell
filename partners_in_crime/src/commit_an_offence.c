@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 00:30:02 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/07 00:30:27 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/07 10:59:09 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	commit_an_offense(char **env)
 	char	*path;
 
 	errno = 0;
+	g_crime.fail = 0;
 	g_crime.paths = NULL;
 	g_crime.parent_pid = getpid();
 	g_crime.env = env;
