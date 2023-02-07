@@ -103,7 +103,25 @@ typedef struct s_data
 extern t_data g_crime;
 
 int		main(int ac, char **av, char **env);
+int		operator_check(char **str);
+int		listing_process(void);
+int	valid_op(char c);
+int	check_dollar(char *str);
+int		list_arguments(t_chain **chain, t_process *process);
+void	add_new_str(char **trimed, char *removed);
+void	string_found(char **str);
+void	str_listing(char **str);
+void	commit_an_offense(char **env);
 void	handle_sigint(int sig);
+void	handle_exit(char *str);
 void	create_crime(char **av, char **env);
+void	listing(char *input);
+void	init_process(t_process **new_process);
+char	*get_str2(char *str, int *i); //
+char	*parse_dollar_op(char *str);
+char	*remove_quotes(char *str);
+char	*clean_quotes(char *str, int *curr, char type);
+t_chain	*new_list(char *str, enum e_ttype type);
+static char	*get_str(char *str, int	*pos, int type); ///
 
 #endif

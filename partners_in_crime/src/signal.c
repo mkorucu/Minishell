@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 10:46:02 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/01 13:30:46 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/06 23:37:05 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ void	handle_sigint(int sig)
 {
 	if (sig == SIGINT)
 	{
-		g_crime.fail = 130;
+		g_crime.fail = 1;
 		ioctl(STDIN_FILENO, TIOCSTI, "\n");
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		//write(1, "\033[A", 3);
+		write(1, "\033[A", 3);
 	}
 }
 

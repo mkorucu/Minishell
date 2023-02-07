@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dolarSign.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:03:51 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/01/31 12:14:24 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/07 00:34:55 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	check_dollar(char *str)
 	return (single_quote);
 }
 
-static char	*get_str(char *str, int	*pos, int type)
+static char	*get_str2(char *str, int *pos, int type)
 {
 	int		first;
 	char	*data;

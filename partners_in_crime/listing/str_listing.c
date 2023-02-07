@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_listing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 21:39:45 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/06 18:47:08 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/07 00:27:09 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	operator_check(char **str)
 		return (RED_OUTPUT);
 	if (*str[0] == '|')
 		return (PIPE);
-	if (*str == ' ' || *str == '\t')
+	if ((*str[0] == ' ') || (*str[0] == '\t'))
 		return (1);
 	return (0);
 }
@@ -36,9 +36,9 @@ void	string_found(char **str)
 	char	type;
 
 	if (**str == '"')
-		type = DOUBLE_QUOTE;
+		type = '"';
 	if (**str == '\'')
-		type = SINGLE_QUOTE;
+		type = '\'';
 	(*str)++;
 	while (**str)
 	{
@@ -62,17 +62,17 @@ void	str_listing(char **str)
 	char	*head;
 	char	*token_str;
 
-	while (**str && operator_check(&(*str)))
+	while (**str && ((**str == ' ') || (**str == '\t')))
 		(*str)++;
 	head = *str;
 	if (**str && ((**str == DOUBLE_QUOTE) || (**str == SINGLE_QUOTE)))
 		string_found(&(*str));
-	else
-	{
-		if (!(operator_check(&(*str))))
-		{
-			while (**str)
-				*str++;
+	else{
+		while(**str){
+			if (!(operator_check(&(*str))))
+				(*str)++;
+			else
+				break;
 		}
 	}
 	len = *str - head;
