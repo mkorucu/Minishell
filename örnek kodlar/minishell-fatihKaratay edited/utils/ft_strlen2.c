@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_process.c                                      :+:      :+:    :+:   */
+/*   ft_strlen2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 14:51:42 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/01 15:18:11 by bkeklik          ###   ########.fr       */
+/*   Created: 2022/01/09 12:14:04 by fkaratay          #+#    #+#             */
+/*   Updated: 2023/02/06 20:40:35 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
-void	add_process(t_process **list, t_process *new_process)
+size_t	ft_strlen2(const char **s)
 {
-	t_process	*curr;
+	unsigned int	i;
 
-	curr = *list;
-	if (!curr)
-		*list = new_process;
-	else
-	{	
-		while (!curr)
-			curr = curr->next;
-		curr->next = new_process;
-		new_process->prev = curr;
-	}
+	if (!*s)
+		return (0);
+	i = 0;
+	while (*s[i])
+		i++;
+	return (i);
 }

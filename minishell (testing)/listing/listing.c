@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   listing.c                                          :+:      :+:    :+:   */
+/*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 20:53:56 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/07 12:05:43 by mkorucu          ###   ########.fr       */
+/*   Created: 2022/10/12 22:13:13 by btekinli          #+#    #+#             */
+/*   Updated: 2023/02/07 12:13:06 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
-t_chain	*new_list(char *str, enum e_ttype type)
+t_token	*new_list(char *str, enum e_ttype type)
 {
-	t_chain	*new_chain;
+	t_token	*token;
 
-	new_chain = ft_calloc(sizeof(t_chain), 1);
-	new_chain->type = type;
-	new_chain->str = str;
-	new_chain->prev = NULL;
-	new_chain->next = NULL;
-	return (new_chain);
+	token = ft_calloc(sizeof(t_token), 1);
+	token->type = type;
+	token->str = str;
+	token->prev = NULL;
+	token->next = NULL;
+	return (token);
 }
 
-int	add_list(t_chain **chain, t_chain *new_chain)
+int	add_list(t_token **chain, t_token *new_chain)
 {
-	t_chain	*curr;
+	t_token *curr;
 
 	curr = *chain;
 	if (!curr)
@@ -46,15 +46,15 @@ void	listing(char *input)
 	while (*input)
 	{
 		if (!ft_strncmp(input, ">>", 2))
-			input += add_list(&g_crime.chain, new_list(">>", RED_APPEND));
+			input += add_list(&g_ms.token, new_list(">>", RED_APPEND));
 		else if (!ft_strncmp(input, "<<", 2))
-			input += add_list(&g_crime.chain, new_list("<<", HERE_DOC));
+			input += add_list(&g_ms.token, new_list("<<", HERE_DOC));
 		else if (!ft_strncmp(input, "|", 1))
-			input += add_list(&g_crime.chain, new_list("|", PIPE));
+			input += add_list(&g_ms.token, new_list("|", PIPE));
 		else if (!ft_strncmp(input, "<", 1))
-			input += add_list(&g_crime.chain, new_list("<", RED_INPUT));
+			input += add_list(&g_ms.token, new_list("<", RED_INPUT));
 		else if (!ft_strncmp(input, ">", 1))
-			input += add_list(&g_crime.chain, new_list(">", RED_OUTPUT));
+			input += add_list(&g_ms.token, new_list(">", RED_OUTPUT));
 		else
 			str_listing(&input);
 	}

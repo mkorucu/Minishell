@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkaratay <fkaratay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btekinli <btekinli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/09 12:14:04 by fkaratay          #+#    #+#             */
-/*   Updated: 2022/10/12 22:13:56 by fkaratay         ###   ########.fr       */
+/*   Created: 2022/10/12 13:23:14 by btekinli          #+#    #+#             */
+/*   Updated: 2022/10/13 02:36:26 by btekinli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-size_t	ft_strlen(const char *s)
+void	builtin_env(void)
 {
-	unsigned int	i;
+	char	**env;
 
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	env = g_ms.env;
+	while (*env)
+	{
+		printf("%s\n", *env);
+		env++;
+	}
+	if (!is_parent())
+		exit (EXIT_SUCCESS);
 }

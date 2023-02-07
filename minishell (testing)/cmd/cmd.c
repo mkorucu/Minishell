@@ -5,23 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/06 18:58:01 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/07 13:55:06 by mkorucu          ###   ########.fr       */
+/*   Created: 2022/10/12 18:58:46 by btekinli          #+#    #+#             */
+/*   Updated: 2023/02/07 13:46:10 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../minishell.h"
 
-#include "../lib/minishell.h"
-
-void	start_builtin(t_process	*process)
+void	get_builtin(t_process *process)
 {
 	int	in;
 	int	out;
 
 	in = dup(0);
-	out = dup(2);
-	get_all_inputs(process); // redirect/redirect.c fonksiyonu
-	set_all_outputs(process); // redirect/redirect.c fonksiyonu
+	out = dup(1);
+	get_all_inputs(process);
+	set_all_outputs(process);
 	run_builtin(process->execute);
 	dup2(in, 0);
 	dup2(out, 1);
@@ -29,11 +28,11 @@ void	start_builtin(t_process	*process)
 	close(out);
 }
 
-void	pause_cmd(void)
+void	wait_cmd(void)
 {
 	t_process	*process;
 
-	process = g_crime.process;
+	process = g_ms.process;
 	close_fd_all();
 	while (process)
 	{
@@ -50,15 +49,15 @@ void	start_cmd(void)
 {
 	t_process	*process;
 
-	process = g_crime.process;
+	process = g_ms.process;
 	if (!process)
 		return ;
-	fill_all_heredoc(); //Redirect/redirect.c klasöründeki fonksiyon.
-	if (g_crime.ignore)
+	fill_all_heredoc();
+	if (g_ms.ignore)
 		return (close_fd_all());
-	if (is_builtin(*process->execute) && g_crime.process_count == 1)
+	if (is_builtin(process->execute[0]) && g_ms.process_count == 1)
 	{
-		start_builtin(process);
+		get_builtin(process);
 		process = process->next;
 	}
 	while (process)
@@ -66,5 +65,5 @@ void	start_cmd(void)
 		run_cmd(process);
 		process = process->next;
 	}
-	pause_cmd();
+	wait_cmd();
 }

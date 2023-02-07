@@ -5,25 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 18:00:04 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/07 13:52:39 by mkorucu          ###   ########.fr       */
+/*   Created: 2022/10/12 21:47:38 by btekinli          #+#    #+#             */
+/*   Updated: 2023/02/07 13:49:04 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
 void	cmd_error(char *str)
 {
 	errno = 127;
-
 	write(2, "minishell: ", 11);
 	write(2, str, ft_strlen(str));
 	write(2, ": command not found\n", 20);
-	if (!g_crime.parent_pid == getpid())
+	if (!is_parent())
 		exit(errno);
 }
 
-void	chain_err(int type)
+void	chain_error(int type)
 {
 	char	*red;
 
@@ -43,4 +42,27 @@ void	chain_err(int type)
 	write(2, "minishell: syntax error near unexpected token '", 47);
 	write(2, red, ft_strlen(red));
 	write(2, "'\n", 2);
+}
+
+void	directory_err(char *str)
+{
+	errno = 126;
+	write(2, "minishell: ", 11);
+	write(2, str, ft_strlen(str));
+	write(2, ": is a directory\n", 17);
+	if (!is_parent())
+		exit(errno);
+}
+
+void	no_file_err(char *str)
+{
+	if (ft_strchr(str, '/'))
+		errno = 127;
+	else
+		errno = 1;
+	write(2, "minishell: ", 11);
+	write(2, str, ft_strlen(str));
+	write(2, ": No such file or directory\n", 28);
+	if (!is_parent())
+		exit(errno);
 }

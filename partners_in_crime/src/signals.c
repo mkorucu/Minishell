@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   closer.c                                           :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/06 18:22:31 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/06 18:56:31 by mkorucu          ###   ########.fr       */
+/*   Created: 2023/02/07 14:17:24 by mkorucu           #+#    #+#             */
+/*   Updated: 2023/02/07 14:17:33 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minishell.h"
 
-void	close_fd_all(void)
+void	handle_sigint(int sig)  //ctrl_c
 {
-	t_process	*process;
-
-	process = g_crime.process;
-	while (process)
+	if (sig == SIGINT)
 	{
-		if (contain_heredoc(process) && process->heredoc_fd[0] > 2)
-			close(process->heredoc_fd[0]);
-		if (process->fd[0] > 2)
-			close(process->fd[0]);
-		if (process->fd[1] > 2)
-			close(process->fd[1]);
-		process = process->next;
+		g_crime.fail = 1;
+		ioctl(STDIN_FILENO, TIOCSTI, "\n");
+		write(1, "\033[A", 3);
+	}
+}
+
+void	handle_exit(char *str)
+{
+	if (!str)
+	{
+		printf("exit\n");
+		exit(errno);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_chain.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:10:52 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/01 10:47:17 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/07 12:15:35 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	free_chain()
 {
+	t_chain	*chain;
 	t_chain	*curr;
-	t_chain	*curr2;
 	
-	curr = g_crime.chain;
-	while(curr)
+	chain = g_crime.chain;
+	while(chain)
 	{
-		curr2 = curr;
-		curr = curr->next;
-		free(curr2);
+		curr = chain;
+		chain = chain->next;
+		free(curr);
 	}
 }

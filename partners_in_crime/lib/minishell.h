@@ -19,6 +19,7 @@
 
 # define READ_END 0
 # define WRITE_END 1
+# define CHILD_PROCESS 0
 
 enum	enum_builtin_types
 {
@@ -108,7 +109,7 @@ int		listing_process(void);
 int	valid_op(char c);
 int	check_dollar(char *str);
 int		list_arguments(t_chain **chain, t_process *process);
-void	add_new_str(char **trimed, char *removed);
+void	push_new_str(char **trimed, char *removed);
 void	string_found(char **str);
 void	str_listing(char **str);
 void	commit_an_offense(char **env);

@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkaratay <fkaratay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btekinli <btekinli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/09 12:14:04 by fkaratay          #+#    #+#             */
-/*   Updated: 2022/10/12 22:13:56 by fkaratay         ###   ########.fr       */
+/*   Created: 2022/10/12 13:23:20 by btekinli          #+#    #+#             */
+/*   Updated: 2022/10/13 12:07:22 by btekinli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-size_t	ft_strlen(const char *s)
+void	builtin_pwd(void)
 {
-	unsigned int	i;
+	char	*result;
 
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	result = getcwd((void *)0, 0);
+	if (!result)
+		perror("minishell ");
+	else
+		printf("%s\n", result);
+	free(result);
+	if (!is_parent())
+		exit(errno);
 }

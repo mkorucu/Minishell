@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/06 19:26:28 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/07 14:07:19 by mkorucu          ###   ########.fr       */
+/*   Created: 2022/10/12 19:15:09 by btekinli          #+#    #+#             */
+/*   Updated: 2023/02/07 14:07:52 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
 int	contain_heredoc(t_process *process)
 {
@@ -20,17 +20,17 @@ int	contain_heredoc(t_process *process)
 	while (process->redirects[i])
 	{
 		if (is_operator(process->redirects[i]) == HERE_DOC)
-			return (1);
+			return (TRUE);
 		i++;
 	}
-	return (0);
+	return (FALSE);
 }
 
 void	close_fd_all(void)
 {
 	t_process	*process;
 
-	process = g_crime.process;
+	process = g_ms.process;
 	while (process)
 	{
 		if (contain_heredoc(process) && process->heredoc_fd[0] > 2)
@@ -45,7 +45,7 @@ void	close_fd_all(void)
 
 void	route_cmd(t_process *process)
 {
-	if (g_crime.process_count > 1)
+	if (g_ms.process_count > 1)
 	{
 		if (contain_heredoc(process))
 		{
@@ -84,7 +84,7 @@ void	run_cmd(t_process *process)
 		route_cmd(process);
 		run_builtin(process->execute);
 		path = get_path(*process->execute);
-		execve(path, process->execute, g_crime.env);
+		execve(path, process->execute, g_ms.env);
 		cmd_error(*process->execute);
 		exit(errno);
 	}

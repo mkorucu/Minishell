@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkaratay <fkaratay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btekinli <btekinli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/09 12:14:04 by fkaratay          #+#    #+#             */
-/*   Updated: 2022/10/12 22:13:56 by fkaratay         ###   ########.fr       */
+/*   Created: 2022/10/12 22:10:49 by btekinli          #+#    #+#             */
+/*   Updated: 2022/10/13 13:47:59 by btekinli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-size_t	ft_strlen(const char *s)
+void	input(char *file)
 {
-	unsigned int	i;
+	int	fd;
 
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		return (no_file_err(file));
+	dup2(fd, 0);
+	close(fd);
 }

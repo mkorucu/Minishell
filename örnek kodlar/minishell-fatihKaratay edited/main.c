@@ -53,26 +53,13 @@ void	ctrl_d(char *input)
 		exit(errno);
 	}
 }
-int	str_check(char *str, char type)
-{
-	int i = 0, count = 0;
-	while(str[i])
-	{
-		if(str[i] == type)
-			count++;
-		i++;
-	}
-	if (count % 2 == 1)
-		return (1);
-	return (0);
-}
+
 int	main(int ac, char **av, char **env)
 {
 	char	*input2;
 	char	*input;
 	char	*color;
-	int i = 0;
-	int j = 0;
+
 	init_app(env);
 	g_ms.env = env;
 	g_ms.user = get_env("USER");
@@ -85,35 +72,6 @@ int	main(int ac, char **av, char **env)
 		write(1, "\033[32m", 5);
 		input2 = ft_strjoin(g_ms.user, " minishell_> ");
 		color = ft_strjoin(MAGENTA, input2);
-		
-		while(color[i])
-		{
-			if(color[i] == '"')
-			{
-				if(str_check(color, '"'))
-					j = 2;		
-			}
-			else{
-				if(str_check(color, '"'))
-					j = 2;	
-			}
-			i++;
-		}
-		if(!(j==2))
-		{
-			while (1)
-			{	
-				int len = ft_strlen2(av);
-				signal(SIGINT, &ctrl_c);
-				input = readline(">");
-				if (!input || ft_strcmp(av[len-1], color) || g_ms.ignore)
-				{
-					free(input);
-					errno = 1;
-					perror("minishell");
-				}
-			}
-		}
 		write(1, "\033[0m", 4);
 		input = readline(color);
 		ctrl_d(input);

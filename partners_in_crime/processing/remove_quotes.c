@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:43:26 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/07 00:35:57 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/07 12:32:18 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minishell.h"
 
 
-void	add_new_str(char **trimed, char *removed)
+void	push_new_str(char **trimed, char *removed)
 {
 	char	*tmp;
 
@@ -69,7 +69,7 @@ char	*remove_quotes(char *str)
 			removed = clean_quotes(str, &curr, str[curr]);
 		else
 			removed = get_str(str, &curr);
-		add_new_str(&trimed, removed);
+		push_new_str(&trimed, removed);
 	}
 	free(str);
 	return (trimed);

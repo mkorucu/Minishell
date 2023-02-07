@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 00:24:38 by scakmak           #+#    #+#             */
-/*   Updated: 2023/02/06 15:35:30 by mkorucu          ###   ########.fr       */
+/*   Created: 2022/10/13 00:24:38 by btekinli          #+#    #+#             */
+/*   Updated: 2023/02/07 13:49:04 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # include <signal.h>
 # include <sys/ioctl.h>
 
-# define MAGENTA "\001\033[1;95m\002"
 # define TRUE 1
 # define FALSE 0
 # define DOLLAR_OP '$'
@@ -46,17 +45,6 @@ enum e_builtin_types
 	EXIT,
 	UNSET,
 	EXPORT
-};
-
-#define	C_HEREDOC ">>"
-#define	C_APPEND "<<"
-enum e_ctype
-{
-	C_PIPE = '|',
-	C_INPUT = '<',
-	C_OUTPUT = '>',
-    C_DOUBLE_QUOTE = '"',
-    C_SINGLE_QUOTE = '\'',
 };
 
 enum e_ttype
@@ -93,7 +81,6 @@ typedef struct s_minishell
 	int			parent_pid;
 	int			process_count;
 	int			ignore;
-	int			flag;
 	char		**env;
 	char		**paths;
 	char		*user;
@@ -101,35 +88,46 @@ typedef struct s_minishell
 	t_process	*process;
 }				t_minishell;
 
+/* Color codes for users  */
+# define DEFAULT "\001\033[0;39m\002"
+# define GRAY "\001\033[1;90m\002"
+# define RED "\001\033[1;91m\002"
+# define GREEN "\001\033[1;92m\002"
+# define YELLOW "\001\033[1;93m\002"
+# define BLUE "\001\033[1;94m\002"
+# define MAGENTA "\001\033[1;95m\002"
+# define CYAN "\001\033[1;96m\002"
+# define WHITE "\001\033[0;97m\002"
+
 extern t_minishell	g_ms;
 
-int			lexer(void);
+int			listing_process(void);
 int			env_len(void);
 int			is_parent(void);
 void		start_cmd(void);
 void		set_paths(void);
 char		*ft_itoa(int n);
-void		free_token(void);
+void		free_chain(void);
 void		builtin_pwd(void);
 void		input(char *file);
 void		builtin_env(void);
 char		*dollar(char *str);
 void		free_process(void);
-void		close_all_fd(void);
+void		close_fd_all(void);
 char		*get_env(char *str);
 void		init_process(t_process **new_process);
-void		token_err(int type);
-void		tokenize(char *str);
+void		chain_error(int type);
+void		listing(char *input);
 void		set_env(char **env);
 char		*get_path(char *cmd);
 int			is_whitespace(char c);
-void		command_err(char *str);
+void		cmd_error(char *str);
 void		free_array(char **arr);
 void		no_file_err(char *str);
 int			is_operator(char *str);
 void		fill_all_heredoc(void);
 int			check_dollar(char *str);
-char		*clean_quote(char *str);
+char		*remove_quotes(char *str);
 int			ft_atoi(const char *str);
 void		directory_err(char *str);
 size_t		ft_strlen(const char *s);
@@ -144,7 +142,7 @@ void		run_builtin(char **execute);
 void		run_cmd(t_process *process);
 void		output(char *file, int mode);
 void		builtin_export(char **input);
-void		parse_token_string(char **str);
+void		str_listing(char **str);
 void		heredoc(int *fd, char *endline);
 char		*ft_strchr(const char *s, int c);
 void		run_redirects(t_process *process);
@@ -153,14 +151,14 @@ void		set_all_outputs(t_process *process);
 int			contain_heredoc(t_process *process);
 char		**ft_split(char const *str, char c);
 void		*ft_calloc(size_t count, size_t size);
-char		**push_array(char **arg_arr, char *str);
+char		**push_array(char **arr, char *new_str);
 void		push_new_str(char **trimed, char *removed);
-t_token		*init_token(char *str, enum e_ttype type);
+t_token		*new_list(char *str, enum e_ttype type);
 char		*ft_strjoin(char const *s1, char const *s2);
 int			ft_strcmp(const char *str1, const char *str2);
 int			ft_strncmp(const char *str1, const char *str2, size_t n);
 char		*ft_substr(char const *str, unsigned int start, size_t len);
-int			token_addback(t_token **token, t_token *new_token, int plus);
-void		process_addback(t_process **process, t_process *new_process);
+int			add_list(t_token **chain, t_token *new_chain);
+void		add_process(t_process **list, t_process *new_process);
 
 #endif

@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/06 19:45:53 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/06 19:50:53 by mkorucu          ###   ########.fr       */
+/*   Created: 2022/10/12 22:14:06 by btekinli          #+#    #+#             */
+/*   Updated: 2023/02/07 13:49:04 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
 void	check_dir(char *cmd)
 {
@@ -41,9 +41,9 @@ char	*get_path(char *cmd)
 	check_dir(cmd);
 	if (!access(cmd, F_OK))
 		return (ft_strdup(cmd));
-	paths = g_crime.paths;
+	paths = g_ms.paths;
 	if (!paths)
-		cmd_err(cmd);
+		cmd_error(cmd);
 	new_cmd = ft_strjoin("/", cmd);
 	while (*paths)
 	{

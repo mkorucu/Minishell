@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   set_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fkaratay <fkaratay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btekinli <btekinli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/09 12:14:04 by fkaratay          #+#    #+#             */
-/*   Updated: 2022/10/12 22:13:56 by fkaratay         ###   ########.fr       */
+/*   Created: 2022/10/12 22:14:18 by btekinli          #+#    #+#             */
+/*   Updated: 2022/10/13 01:03:20 by btekinli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-size_t	ft_strlen(const char *s)
+void	set_env(char **env)
 {
-	unsigned int	i;
+	size_t	i;
+	size_t	len;
+	char	**head;
 
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	head = env;
+	while (*head)
+		head++;
+	len = head - env;
+	g_ms.env = ft_calloc(sizeof(char **), len + 1);
+	i = -1;
+	while (++i < len)
+		g_ms.env[i] = ft_strdup(env[i]);
 }
