@@ -6,11 +6,11 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 14:46:31 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/08 16:15:53 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 17:12:12 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
 char	**push_array(char **arr, char *new_str)
 {
@@ -74,9 +74,9 @@ int	list_arguments(t_chain **chain, t_process *process)
 		if (!(*chain) || (*chain)->type != STRING)
 		{
 			if (!(chain))
-				chain_error(0);
+				chain_err(0);
 			else
-				chain_error((*chain)->type);
+				chain_err((*chain)->type);
 			free_chain();
 			return (0);
 		}

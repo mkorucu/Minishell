@@ -6,11 +6,11 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 18:00:04 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/08 15:21:00 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 17:15:49 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
 void	cmd_error(char *str)
 {
@@ -18,7 +18,30 @@ void	cmd_error(char *str)
 	write(2, "minishell: ", 11);
 	write(2, str, ft_strlen(str));
 	write(2, ": command not found\n", 20);
-	if (!g_crime.parent_pid == getpid())
+	if (!(g_crime.parent_pid == getpid()))
+		exit(errno);
+}
+
+void	no_file_err(char *str)
+{
+	if (ft_strchr(str, '/'))
+		errno = 127;
+	else
+		errno = 1;
+	write(2, "minishell: ", 11);
+	write(2, str, ft_strlen(str));
+	write(2, ": No such file or directory\n", 28);
+	if ((!(g_crime.parent_pid == getpid())))
+		exit(errno);
+}
+
+void	directory_err(char *str)
+{
+	errno = 126;
+	write(2, "minishell: ", 11);
+	write(2, str, ft_strlen(str));
+	write(2, ": is a directory\n", 17);
+	if (!(g_crime.parent_pid == getpid()))
 		exit(errno);
 }
 

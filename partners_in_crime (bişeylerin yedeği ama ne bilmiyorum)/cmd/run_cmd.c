@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   run_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 19:26:28 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/07 14:07:19 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/08 17:04:39 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
 int	contain_heredoc(t_process *process)
 {
@@ -19,7 +19,7 @@ int	contain_heredoc(t_process *process)
 	i = 0;
 	while (process->redirects[i])
 	{
-		if (is_operator(process->redirects[i]) == HERE_DOC)
+		if (!ft_strncmp(process->redirects[i], "<<", 2))
 			return (1);
 		i++;
 	}

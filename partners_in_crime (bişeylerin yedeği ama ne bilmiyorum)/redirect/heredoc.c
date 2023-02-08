@@ -6,11 +6,11 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 21:00:11 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/08 15:25:48 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 16:51:12 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
 void	heredoc(int *fd, char *endline)
 {

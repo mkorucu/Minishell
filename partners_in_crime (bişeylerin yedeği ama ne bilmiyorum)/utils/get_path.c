@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 19:45:53 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/07 13:52:39 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/08 16:51:12 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
 void	check_dir(char *cmd)
 {

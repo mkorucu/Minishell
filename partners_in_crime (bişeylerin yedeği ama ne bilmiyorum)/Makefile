@@ -1,25 +1,18 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/01/27 23:42:09 by mkorucu           #+#    #+#              #
-#    Updated: 2023/02/08 16:38:22 by bkeklik          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# COLORS
+RESET		=	\033[0m
+GREEN		=	\033[32m
+YELLOW		=	\033[33m
+BLUE		=	\033[34m
+RED			=	\033[31m
 
 # Directories:
 D_SRC	=		src/main.c	src/signals.c
 
-D_BUILTIN	=	builtin/builtin.c		builtin/cd.c		builtin/echo.c			builtin/env.c		builtin/exit.c		builtin/export.c	builtin/pwd.c		builtin/unset.c
+D_BUILTIN	=	builtins/builtin.c		builtins/cd.c		builtins/echo.c			builtins/env.c		builtins/exit.c		builtins/export.c	builtins/pwd.c		builtins/unset.c
 
 D_CMD   = cmd/cmd.c cmd/run_cmd.c
 
 D_EF = error_free/error.c error_free/free.c
-
-D_REDIRECT	=	redirect/heredoc.c		redirect/output.c		redirect/redirect.c
 
 D_LISTING = listing/listing.c listing/str_listing.c
 
@@ -27,14 +20,14 @@ D_PROCESS = processing/dolarSign.c processing/processing.c processing/remove_quo
 
 D_REDIRECT = redirect/heredoc.c redirect/output.c redirect/redirect.c
 
-D_UTILS = utils/get_env.c utils/get_path.c utils/set_path.c
+D_UTILS = utils/get_env.c utils/get_path.c utils/set_paths.c
 
 #STATUS
-SUCCESS		=	@echo "\033[32mBuild successfull !\033[0m"
-REMOVE		=	@echo "\033[31mDeleted !\033[0m"
+SUCCESS		=	@echo "$(GREEN)Build successfull !$(RESET)"
+REMOVE		=	@echo "$(RED)Deleted !$(RESET)"
 
 NAME	=	minishell
-LIBFT	=	libft/libft.a
+LIB	=	libft/libft.a
 OBJ		=	$(D_SRC:%.c=%.o) \
 			$(D_BUILTIN:%.c=%.o) \
 			$(D_CMD:%.c=%.o) \
@@ -52,7 +45,7 @@ RM			=	@rm -rf
 all			: $(LIB) $(NAME)
 
 $(LIB):
-	@make -C ./sources/libft/
+	@make -C ./libft/
 	@echo "libft compiled"
 
 $(NAME)		: $(OBJ)

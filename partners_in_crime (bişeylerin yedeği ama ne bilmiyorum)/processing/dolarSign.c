@@ -6,11 +6,11 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:03:51 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/08 15:50:31 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 16:51:12 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
 int	valid_op(char c)
 {

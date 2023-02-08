@@ -6,11 +6,11 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 20:41:37 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/08 15:09:48 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 17:01:44 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
 void	builtin_cd(char **input)
 {
@@ -32,6 +32,6 @@ void	builtin_cd(char **input)
 			if (chdir(home))
 				perror("minishell ");
 	}
-	if (!g_crime.parent_pid == getpid())
+	if (!(g_crime.parent_pid == getpid()))
 		exit (errno);
 }

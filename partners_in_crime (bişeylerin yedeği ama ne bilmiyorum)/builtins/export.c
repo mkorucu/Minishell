@@ -6,11 +6,11 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:11:09 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/08 16:00:14 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 17:03:26 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
 int	env_len(void)
 {
@@ -33,7 +33,7 @@ int	check_env(char *str)
 		return (0);
 	while (*str)
 	{
-		if (is_whitespace(*str))
+		if ((*str == ' ') || (*str == '\t'))
 			return (0);
 		str++;
 	}
@@ -96,7 +96,7 @@ void	builtin_export(char **input)
 			if (pos != -1)
 			{
 				tmp = g_crime.env[pos];
-				g_ms.env[pos] = ft_strdup(*input);
+				g_crime.env[pos] = ft_strdup(*input);
 				free(tmp);
 			}
 			else
@@ -105,6 +105,6 @@ void	builtin_export(char **input)
 		input++;
 	}
 	set_paths();
-	if (!(g_crime.parent_pid == get_pid()))
+	if (!(g_crime.parent_pid == getpid()))
 		exit (EXIT_SUCCESS);
 }

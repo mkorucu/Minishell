@@ -6,14 +6,14 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:52:01 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/08 16:38:40 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 17:18:38 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "../libft/libft.h"
+# include "libft/libft.h"
 # include "colors.h"
 # include <stdio.h>
 # include <readline/readline.h>
@@ -128,8 +128,10 @@ int				listing_process(void);
 int				check_env(char *str);
 int				contain_heredoc(t_process *process);
 int				ft_isnumber_with_sign(char *arg);
+char			*dollar(char *str);
 int				list_arguments(t_chain **chain, t_process *process);
 void			set_paths(void);
+void			directory_err(char *str);
 void			close_heredoc(int sig);
 void			handle_sigint(int sig);
 void			handle_exit(char *str);
@@ -160,17 +162,16 @@ void			close_fd_all(void);
 void			cmd_error(char *str);
 void			chain_err(int type);
 void			route_cmd(t_process *process);
-void			start_builtin(t_process	*process);
 void			close_heredoc(int sig);
 void			listing(char *input);
 void			add_env(char *str);
 void			builtin_export(char **input);
+void			no_file_err(char *str);
 void			fill_all_heredoc(void);
 void			start(char *input);
 void			commit_an_offense(char **env);
 void			init_process(t_process **new_process);
 void			pause_cmd(void);
-void			start_cmd(void);
 void			builtin_env(void);
 void			builtin_echo(char **input);
 void			heredoc(int *fd, char *endline);

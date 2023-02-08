@@ -6,11 +6,11 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:10:04 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/08 15:14:42 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 17:03:34 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
 void	builtin_pwd(void)
 {
@@ -23,6 +23,6 @@ void	builtin_pwd(void)
 	else
 		printf("%s\n", result);
 	free(result);
-	if (!(g_crime.parent_pid == get_pid()))
+	if (!(g_crime.parent_pid == getpid()))
 		exit(errno);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   listing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 20:53:56 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/07 12:05:43 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/08 16:51:12 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
 t_chain	*new_list(char *str, enum e_ttype type)
 {

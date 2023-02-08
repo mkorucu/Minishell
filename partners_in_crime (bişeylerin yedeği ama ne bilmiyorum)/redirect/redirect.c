@@ -6,11 +6,11 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 20:57:54 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/08 15:30:03 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 17:09:42 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
 void	get_all_inputs(t_process *process)
 {
@@ -22,7 +22,7 @@ void	get_all_inputs(t_process *process)
 	redirects = process->redirects;
 	while (redirects[i])
 	{
-		if (is_operator(redirects[i]) == RED_INPUT)
+		if (!(ft_strncmp(process->redirects[i], "<", 1)))
 		{
 			fd = open(redirects[i + 1], O_RDONLY);
 			if (fd == -1)
@@ -33,7 +33,7 @@ void	get_all_inputs(t_process *process)
 				close(fd);
 			}
 		}	
-		else if (is_operator(redirects[i]) == HERE_DOC)
+		else if (!ft_strncmp(process->redirects[i], "<<", 2))
 			dup2(process->heredoc_fd[0], 0);
 		i += 2;
 	}

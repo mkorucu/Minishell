@@ -6,11 +6,11 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:43:26 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/08 15:33:11 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 16:51:12 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
 void	push_new_str(char **trimed, char *removed)
 {

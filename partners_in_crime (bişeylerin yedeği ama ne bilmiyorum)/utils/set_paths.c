@@ -6,18 +6,18 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 11:45:02 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/08 16:19:21 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 17:16:50 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
 void	set_paths(void)
 {
 	char	*path;
 
 	if (g_crime.paths)
-		kill_him(g_crime.paths);
+		free_array(g_crime.paths);
 	path = get_env("PATH");
 	if (!(*path))
 		g_crime.paths = NULL;

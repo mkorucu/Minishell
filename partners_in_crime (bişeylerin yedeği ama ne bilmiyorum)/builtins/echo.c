@@ -6,11 +6,11 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:07:23 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/08 15:55:42 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 17:01:56 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/minishell.h"
+#include "../minishell.h"
 
 void	builtin_echo(char **input)
 {
@@ -32,6 +32,6 @@ void	builtin_echo(char **input)
 	}
 	if (flag)
 		write(STDOUT_FILENO, "\n", 1);
-	if (!is_parent())
+	if (!(g_crime.parent_pid == getpid()))
 		exit(EXIT_SUCCESS);
 }
