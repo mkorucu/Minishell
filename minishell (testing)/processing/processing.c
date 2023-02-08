@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   processing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:08:25 by btekinli          #+#    #+#             */
-/*   Updated: 2023/02/07 13:35:03 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/08 11:30:16 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	add_process(t_process **list, t_process *new_process)
 		*list = new_process;
 	else
 	{	
-		while (!curr)
+		while (curr->next)
 			curr = curr->next;
 		curr->next = new_process;
 		new_process->prev = curr;
