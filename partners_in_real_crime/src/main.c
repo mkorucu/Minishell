@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:44:53 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/08 21:37:53 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 21:40:36 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main(int ac, char **av, char **env)
 		add_history(input);
 		free(input);
 		free(prompter);
-		csystem("leaks minishell");
+		system("leaks minishell");
 	}
 	exit(errno);
 }
