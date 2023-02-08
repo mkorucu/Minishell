@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_listing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 21:39:45 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/08 16:51:12 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 22:11:14 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	str_listing(char **str)
 {
 	int		len;
 	char	*head;
-	char	*token_str;
+	char	*chain_str;
 
 	while (**str && ((**str == ' ') || (**str == '\t')))
 		(*str)++;
@@ -80,7 +80,7 @@ void	str_listing(char **str)
 	len = *str - head;
 	if (len > 0)
 	{
-		token_str = ft_substr(head, 0, len);
-		add_list(&g_crime.chain, new_list(token_str, STRING));
+		chain_str = ft_substr(head, 0, len);
+		add_list(&g_crime.chain, new_list(chain_str, STRING));
 	}
 }

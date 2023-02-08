@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:52:01 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/08 21:20:37 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 22:16:47 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@
 # include <signal.h>
 # include <sys/ioctl.h>
 
-# define READ_END 0
-# define WRITE_END 1
-# define CHILD_PROCESS 0
-
 enum	e_builtin_types
 {
 	CD = 1,
@@ -46,9 +42,6 @@ enum	e_builtin_types
 
 enum e_ctype
 {
-	C_PIPE = '|',
-	C_INPUT = '<',
-	C_OUTPUT = '>',
 	DOUBLE_QUOTE = '"',
 	SINGLE_QUOTE = '\'',
 };
@@ -61,21 +54,6 @@ enum e_ttype
 	RED_INPUT,
 	RED_APPEND,
 	RED_OUTPUT
-};
-
-enum	e_mini_error
-{
-	QUOTE = 1,
-	NDIR = 2,
-	NPERM = 3,
-	NCMD = 6,
-	DUPERR = 7,
-	FORKERR = 8,
-	PIPERR = 9,
-	PIPENDERR = 10,
-	MEM = 11,
-	IS_DIR = 12,
-	NOT_DIR = 13
 };
 
 typedef struct s_chain
@@ -114,8 +92,6 @@ typedef struct s_data
 extern t_data	g_crime;
 
 int				main(int ac, char **av, char **env);
-int				operator_check(char **str);
-int				listing_process(void);
 int				valid_op(char c);
 int				check_dollar(char *str);
 int				env_len(void);
@@ -129,17 +105,11 @@ int				check_env(char *str);
 int				contain_heredoc(t_process *process);
 int				ft_isnumber_with_sign(char *arg);
 char			*dollar(char *str);
-int				list_arguments(t_chain **chain, t_process *process);
 void			set_paths(void);
 void			directory_err(char *str);
 void			close_heredoc(int sig);
-void			handle_sigint(int sig);
-void			handle_exit(char *str);
-void			string_found(char **str);
-void			str_listing(char **str);
 void			listing(char *input);
 void			builtin_pwd(void);
-void			pause_cmd(void);
 void			start_cmd(void);
 void			remove_env(char *data);
 void			builtin_exit(char **input);
@@ -148,22 +118,17 @@ void			free_process(void);
 void			free_chain(void);
 void			builtin_unset(char **input);
 void			start_builtin(t_process	*process);
-void			push_new_str(char **trimed, char *removed);
 void			run_builtin(char **execute);
 void			builtin_cd(char **input);
 void			string_found(char **str);
 void			str_listing(char **str);
-void			commit_an_offense(char **env);
 void			handle_sigint(int sig);
 void			handle_exit(char *str);
-void			create_crime(char **av, char **env);
 void			run_cmd(t_process *process);
 void			close_fd_all(void);
 void			cmd_error(char *str);
 void			chain_err(int type);
 void			route_cmd(t_process *process);
-void			close_heredoc(int sig);
-void			listing(char *input);
 void			add_env(char *str);
 void			builtin_export(char **input);
 void			no_file_err(char *str);

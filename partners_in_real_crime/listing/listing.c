@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 20:53:56 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/08 21:41:05 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 22:07:26 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_chain	*new_list(char *str, enum e_ttype type)
 
 	new_chain = ft_calloc(sizeof(t_chain), 1);
 	new_chain->type = type;
-	new_chain->str = ft_strdup(str);
+	new_chain->str = str;
 	new_chain->prev = NULL;
 	new_chain->next = NULL;
 	return (new_chain);
@@ -46,15 +46,20 @@ void	listing(char *input)
 	while (*input)
 	{
 		if (!ft_strncmp(input, ">>", 2))
-			input += add_list(&g_crime.chain, new_list(">>", RED_APPEND));
+			input += add_list(&g_crime.chain, new_list(ft_strdup(">>"), \
+			RED_APPEND));
 		else if (!ft_strncmp(input, "<<", 2))
-			input += add_list(&g_crime.chain, new_list("<<", HERE_DOC));
+			input += add_list(&g_crime.chain, new_list(ft_strdup("<<"), \
+			HERE_DOC));
 		else if (!ft_strncmp(input, "|", 1))
-			input += add_list(&g_crime.chain, new_list("|", PIPE));
+			input += add_list(&g_crime.chain, new_list(ft_strdup("|"), \
+			PIPE));
 		else if (!ft_strncmp(input, "<", 1))
-			input += add_list(&g_crime.chain, new_list("<", RED_INPUT));
+			input += add_list(&g_crime.chain, new_list(ft_strdup("<"), \
+			RED_INPUT));
 		else if (!ft_strncmp(input, ">", 1))
-			input += add_list(&g_crime.chain, new_list(">", RED_OUTPUT));
+			input += add_list(&g_crime.chain, new_list(ft_strdup(">"), \
+			RED_OUTPUT));
 		else
 			str_listing(&input);
 	}
