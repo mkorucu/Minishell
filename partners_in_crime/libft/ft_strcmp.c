@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 14:17:24 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/08 11:50:42 by mkorucu          ###   ########.fr       */
+/*   Created: 2023/02/08 12:43:26 by mkorucu           #+#    #+#             */
+/*   Updated: 2023/02/08 12:43:56 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minishell.h"
 
-void	close_heredoc(int sig)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	(void)sig;
-	g_crime.ignore = 1;
-	ioctl(STDIN_FILENO, TIOCSTI, "\n");
-}
-
-void	handle_sigint(int sig)  //ctrl_c
-{
-	if (sig == SIGINT)
+	if (!s1 || !s2)
+		return (0);
+	while (*s1 || *s2)
 	{
-		g_crime.fail = 1;
-		ioctl(STDIN_FILENO, TIOCSTI, "\n");
-		write(1, "\033[A", 3);
+		if (*s1 != *s2)
+			return (0);
+		s1++;
+		s2++;
 	}
-}
-
-void	handle_exit(char *str)
-{
-	if (!str)
-	{
-		printf("exit\n");
-		exit(errno);
-	}
+	return (1);
 }

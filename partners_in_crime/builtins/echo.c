@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 14:17:24 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/08 11:50:42 by mkorucu          ###   ########.fr       */
+/*   Created: 2023/01/29 19:07:23 by bkeklik           #+#    #+#             */
+/*   Updated: 2023/02/08 12:42:53 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minishell.h"
 
-void	close_heredoc(int sig)
+void	builtin_echo(char **input)
 {
-	(void)sig;
-	g_crime.ignore = 1;
-	ioctl(STDIN_FILENO, TIOCSTI, "\n");
-}
+	int	i;
+	int	flag;
 
-void	handle_sigint(int sig)  //ctrl_c
-{
-	if (sig == SIGINT)
+	i = 1;
+	flag = 1;
+	if (input[i] && ft_strcmp(input[i], "-n"))
+		i++;
+	if (i > 1)
+		flag = 0;
+	while (input[i])
 	{
-		g_crime.fail = 1;
-		ioctl(STDIN_FILENO, TIOCSTI, "\n");
-		write(1, "\033[A", 3);
+		ft_putstr_fd(input[i], 1);
+		if (input[i + 1])
+			write(STDOUT_FILENO, " ", 1);
+		i++;
 	}
-}
-
-void	handle_exit(char *str)
-{
-	if (!str)
-	{
-		printf("exit\n");
-		exit(errno);
-	}
+	if (flag)
+		write(STDOUT_FILENO, "\n", 1);
+	if (!is_parent())
+		exit(EXIT_SUCCESS);
 }
