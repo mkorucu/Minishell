@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   processing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 14:46:31 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/08 17:12:12 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 19:43:31 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	add_process(t_process **list, t_process *new_process)
 		*list = new_process;
 	else
 	{	
-		while (!curr)
+		while (curr->next)
 			curr = curr->next;
 		curr->next = new_process;
 		new_process->prev = curr;
