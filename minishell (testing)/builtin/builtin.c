@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btekinli <btekinli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:22:36 by btekinli          #+#    #+#             */
-/*   Updated: 2022/10/13 11:36:51 by btekinli         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:27:09 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,18 @@ int	is_builtin(char *command)
 
 void	run_builtin(char **execute)
 {
-	int	type;
-
-	type = is_builtin(execute[0]);
-	if (type == CD)
-		builtin_cd(execute);
-	if (type == ENV)
-		builtin_env();
-	if (type == PWD)
+	if (ft_strcmp(*execute, "pwd"))
 		builtin_pwd();
-	if (type == ECHO)
+	else if (ft_strcmp(*execute, "env"))
+		builtin_env();
+	else if (ft_strcmp(*execute, "cd"))
+		builtin_cd(execute);
+	else if (ft_strcmp(*execute, "echo"))
 		builtin_echo(execute);
-	if (type == EXIT)
+	else if (ft_strcmp(*execute, "exit"))
 		builtin_exit(execute);
-	if (type == UNSET)
+	else if (ft_strcmp(*execute, "unset"))
 		builtin_unset(execute);
-	if (type == EXPORT)
+	else if (ft_strcmp(*execute, "export"))
 		builtin_export(execute);
 }

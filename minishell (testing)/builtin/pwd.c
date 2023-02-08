@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btekinli <btekinli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:23:20 by btekinli          #+#    #+#             */
-/*   Updated: 2022/10/13 12:07:22 by btekinli         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:29:00 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	builtin_pwd(void)
 {
 	char	*result;
 
-	result = getcwd((void *)0, 0);
+	result = NULL;
+	result = getcwd(result, sizeof(result));
 	if (!result)
 		perror("minishell ");
 	else

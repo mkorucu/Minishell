@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btekinli <btekinli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:23:16 by btekinli          #+#    #+#             */
-/*   Updated: 2022/10/13 00:28:10 by btekinli         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:29:55 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int	ft_get_arg_count(char **input)
-{
-	int	i;
-
-	i = 0;
-	while (input[i])
-		i++;
-	return (i);
-}
 
 int	ft_isnumber_with_sign(char *arg)
 {
@@ -36,7 +26,12 @@ int	ft_isnumber_with_sign(char *arg)
 
 void	builtin_exit(char **input)
 {
-	if (ft_get_arg_count(input) == 1)
+	int i;
+
+    i = 0;
+    while (input[i])
+        i++;
+	if (i == 1)
 	{
 		printf("exit\n");
 		exit(errno);
@@ -45,7 +40,7 @@ void	builtin_exit(char **input)
 	{
 		if (ft_isnumber_with_sign(input[1]))
 		{
-			if (ft_get_arg_count(input) > 2)
+			if (i > 2)
 			{
 				write(2, "exit\nminishell: exit: too many arguments\n", 41);
 				errno = 1;
@@ -57,3 +52,4 @@ void	builtin_exit(char **input)
 		exit(-1 % 256);
 	}
 }
+

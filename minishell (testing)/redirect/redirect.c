@@ -6,7 +6,7 @@
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:13:15 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/08 13:17:10 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/08 14:31:31 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	get_all_inputs(t_process *process)
 	{
 		if (is_operator(redirects[i]) == RED_INPUT)
 		{
-			//input(redirects[i + 1]);
 			fd = open(redirects[i + 1], O_RDONLY);
 			if (fd == -1)
 				return (no_file_err(redirects[i + 1]));
