@@ -5,79 +5,73 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 22:14:23 by fkaratay          #+#    #+#             */
-/*   Updated: 2023/02/08 20:45:54 by bkeklik          ###   ########.fr       */
+/*   Created: 2023/01/27 23:44:53 by bkeklik           #+#    #+#             */
+/*   Updated: 2023/02/08 21:37:53 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-t_minishell	g_ms;
-
-void	init_app(char **env)
+void	commit_an_offense(char **env)
 {
 	errno = 0;
-	g_ms.paths = NULL;
-	g_ms.parent_pid = getpid();
+	g_crime.paths = NULL;
+	g_crime.parent_pid = getpid();
 	set_env(env);
+	g_crime.user = get_env("USER");
 	set_paths();
 }
 
-void	init_shell(char *input)
+void	start(char *input)
 {
-	g_ms.token = NULL;
-	g_ms.process = NULL;
-	g_ms.process_count = 0;
-	tokenize(input);
-	if (!lexer())
+	if (!*input)
+		return ;
+	g_crime.chain = NULL;
+	g_crime.process = NULL;
+	g_crime.process_count = 0;
+	listing(input);
+	if (!listing_process())
 		return ;
 	start_cmd();
 	free_process();
 }
 
-void	ctrl_c(int sig)
+char	*prompt(void)
 {
-	(void)sig;
-	g_ms.ignore = TRUE;
-	ioctl(STDIN_FILENO, TIOCSTI, "\n");
-	write(1, "\033[A", 3);
-}
+	char	*str;
+	char	*color;
 
-void	ctrl_d(char *input)
-{
-	if (!input)
-	{
-		printf("exit\n");
-		exit(errno);
-	}
+	str = ft_strjoin(g_crime.user, " minishell % ");
+	color = ft_strjoin(MAGENTA, str);
+	free (str);
+	return (color);
 }
 
 int	main(int ac, char **av, char **env)
 {
 	char	*input;
+	char	*prompter;
 
-	init_app(env);
-	while (ac && av)
+	commit_an_offense(env);
+	while (av && ac)
 	{
-		g_ms.ignore = FALSE;
-		signal(SIGINT, &ctrl_c);
+		signal(SIGINT, &handle_sigint);
 		signal(SIGQUIT, SIG_IGN);
-		write(1, "\033[32m", 5);
-		input = readline("minishell_> ");
-		write(1, "\033[0m", 4);
-		ctrl_d(input);
-		if (g_ms.ignore)
+		g_crime.fail = 0;
+		prompter = prompt();
+		input = readline(prompter);
+		write(1, DEFAULT, 10);
+		handle_exit(input);
+		if (g_crime.fail)
 		{
 			free(input);
 			input = malloc(1);
 		}
-		if (*input)
-		{
-			init_shell(input);
-			add_history(input);
-		}
+		start(input);
+		add_history(input);
 		free(input);
-		system("leaks minishell");
+		free(prompter);
+		csystem("leaks minishell");
 	}
 	exit(errno);
 }
