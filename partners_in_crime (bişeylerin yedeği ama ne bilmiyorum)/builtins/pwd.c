@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:10:04 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/01/29 19:10:18 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 15:14:42 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 void	builtin_pwd(void)
 {
-	char	cwd[1024];
-	chdir("/path/to/change/directory/to");
-	getcwd(cwd, sizeof(cwd));
-	printf("%s\n", cwd);
+	char	*result;
+
+	result = NULL;
+	result = getcwd(result, sizeof(result));
+	if (!result)
+		perror("minishell ");
+	else
+		printf("%s\n", result);
+	free(result);
+	if (!(g_crime.parent_pid == get_pid()))
+		exit(errno);
 }

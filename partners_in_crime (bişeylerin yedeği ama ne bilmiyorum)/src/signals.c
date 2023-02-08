@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:17:24 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/08 11:50:42 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/08 16:19:56 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	close_heredoc(int sig)
 {
 	(void)sig;
-	g_crime.ignore = 1;
+	g_crime.fail = 1;
 	ioctl(STDIN_FILENO, TIOCSTI, "\n");
 }
 
-void	handle_sigint(int sig)  //ctrl_c
+void	handle_sigint(int sig)
 {
 	if (sig == SIGINT)
 	{

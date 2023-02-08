@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:24:38 by btekinli          #+#    #+#             */
-/*   Updated: 2023/02/08 14:14:55 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/08 15:41:00 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 # define DOUBLE_QUOTE '"'
 # define SINGLE_QUOTE '\''
 # define CHILD_PROCESS 0
-# define MAIN_PROCESS 1
 # define REPLACE 1
 # define APPEND 0
 

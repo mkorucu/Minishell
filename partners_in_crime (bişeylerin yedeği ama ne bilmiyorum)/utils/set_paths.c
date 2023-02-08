@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contain_heredoc.c                                  :+:      :+:    :+:   */
+/*   set_paths.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/06 18:43:13 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/06 18:49:53 by mkorucu          ###   ########.fr       */
+/*   Created: 2023/02/07 11:45:02 by mkorucu           #+#    #+#             */
+/*   Updated: 2023/02/08 16:19:21 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minishell.h"
 
-void	contain_heredoc(t_process	*process)
+void	set_paths(void)
 {
-	int	i;
-	
-	i = 0;
-	while(process->redirects[i])
-	{
-		if (operator_check(process->redirects[i]) == HERE_DOC)
-			return (1);
-		i++;
-	}
-	return (0);
+	char	*path;
+
+	if (g_crime.paths)
+		kill_him(g_crime.paths);
+	path = get_env("PATH");
+	if (!(*path))
+		g_crime.paths = NULL;
+	else
+		g_crime.paths = ft_split(path, ':');
+	free(path);
 }

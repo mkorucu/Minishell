@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 12:03:51 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/07 00:34:55 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 15:50:31 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*parse_dollar_op(char *str)
 
 	i = 0;
 	result = NULL;
-	data = get_str(str, &i, '$');
+	data = get_str2(str, &i, '$');
 	push_new_str(&result, data);
 	first = i;
 	if (str[i] == '?' && ++i)
@@ -79,7 +79,7 @@ char	*parse_dollar_op(char *str)
 		push_new_str(&result, env);
 		free(data);
 	}
-	data = get_str(str, &i, 0);
+	data = get_str2(str, &i, 0);
 	push_new_str(&result, data);
 	return (result);
 }

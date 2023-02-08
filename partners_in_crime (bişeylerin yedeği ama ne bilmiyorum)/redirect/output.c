@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   kill_him.c                                         :+:      :+:    :+:   */
+/*   output.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 19:24:53 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/01 20:53:28 by bkeklik          ###   ########.fr       */
+/*   Created: 2023/02/08 15:30:18 by bkeklik           #+#    #+#             */
+/*   Updated: 2023/02/08 15:31:31 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minishell.h"
 
-void	kill_him(char **arr)
+void	output(char *file, int mode)
 {
-	int	i;
+	int		fd;
 
-	i = 0;
-	while (arr[i])
+	fd = 0;
+	if (mode == 1)
+		fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0777);
+	else if (mode == 0)
+		fd = open(file, O_CREAT | O_WRONLY | O_APPEND, 0777);
+	if (fd == -1)
 	{
-		free(arr[i]);
-		i++;
+		perror("minishell");
+		if (g_crime.parent_pid == getpid())
+			return ;
+		else
+			exit(errno);
 	}
-	free(arr);
+	dup2(fd, 1);
+	close(fd);
 }

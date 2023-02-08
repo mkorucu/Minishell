@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 13:23:22 by btekinli          #+#    #+#             */
-/*   Updated: 2023/02/08 15:46:21 by bkeklik          ###   ########.fr       */
+/*   Created: 2023/02/08 15:12:17 by bkeklik           #+#    #+#             */
+/*   Updated: 2023/02/08 15:46:54 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../lib/minishell.h"
 
 void	remove_env(char *data)
 {
@@ -21,18 +21,17 @@ void	remove_env(char *data)
 	i = 0;
 	j = 0;
 	new_env = ft_calloc(sizeof(char *), env_len() + 1);
-	while (g_ms.env[i])
+	while (g_crime.env[i])
 	{
-		if (ft_strncmp(g_ms.env[i], data, ft_strlen(data)))
+		if (ft_strncmp(g_crime.env[i], data, ft_strlen(data)))
 		{
-			new_env[j] = ft_strdup(g_ms.env[i]);
+			new_env[j] = ft_strdup(g_crime.env[i]);
 			j++;
 		}
 		i++;
 	}
 	new_env[j] = 0;
-	g_ms.env = new_env;
-	//free_array(new_env);
+	g_crime.env = new_env;
 }
 
 void	builtin_unset(char **input)
@@ -48,6 +47,6 @@ void	builtin_unset(char **input)
 		input++;
 	}
 	set_paths();
-	if (!is_parent())
-		exit (EXIT_SUCCESS);
+	if (!(g_crime.parent_pid == get_pid()))
+		exit (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 21:39:45 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/07 00:27:09 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 16:07:54 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,14 @@ void	str_listing(char **str)
 	head = *str;
 	if (**str && ((**str == DOUBLE_QUOTE) || (**str == SINGLE_QUOTE)))
 		string_found(&(*str));
-	else{
-		while(**str){
+	else
+	{
+		while (**str)
+		{
 			if (!(operator_check(&(*str))))
 				(*str)++;
 			else
-				break;
+				break ;
 		}
 	}
 	len = *str - head;

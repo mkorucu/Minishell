@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_process.c                                     :+:      :+:    :+:   */
+/*   processing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 14:46:31 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/07 13:27:42 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/08 16:15:53 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	list_arguments(t_chain **chain, t_process *process)
 
 	if ((*chain)->type == STRING)
 	{
-		str = remove_quotes((*chain)->str); //DAHA YAZMADIM
+		str = remove_quotes((*chain)->str);
 		process->execute = push_array(process->execute, str);
 	}
 	else
@@ -92,7 +92,6 @@ int	listing_process(void)
 	t_process	*p_curr;
 
 	c_curr = g_crime.chain;
-
 	while (c_curr)
 	{
 		if (c_curr->type == PIPE || c_curr->prev == NULL)

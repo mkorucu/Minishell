@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:43:26 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/07 12:32:18 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/08 15:33:11 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/minishell.h"
-
 
 void	push_new_str(char **trimed, char *removed)
 {

@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 19:07:57 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/01 12:45:43 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 15:16:11 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	builtin_env(void)
 	env = g_crime.env;
 	while (*env)
 	{
-		printf("%s\n",*env);
-			env++;
+		printf("%s\n", *env);
+		env++;
 	}
-	if (!g_crime.parent_pid == getpid())
+	if (!(g_crime.parent_pid == get_pid()))
 		exit (EXIT_SUCCESS);
 }

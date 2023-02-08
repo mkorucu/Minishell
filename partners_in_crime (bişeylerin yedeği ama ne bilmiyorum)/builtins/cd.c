@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 20:41:37 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/01 10:47:00 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 15:09:48 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,24 @@
 
 void	builtin_cd(char **input)
 {
-	if (input[1] == NULL)
+	char	*home;
+
+	if (input[1] != NULL)
 	{
-		if (chdir(getenv("HOME")))
-			perror("minishell ");
+		if (chdir(input[1]) != 0)
+		{
+			errno = 1;
+			write(2, "minishell : No such file or directory\n", 38);
+			strerror(errno);
+		}	
 	}
 	else
 	{
-		if (chdir(input[1]) != 0)
-			perror("minishell ");
+		home = getenv("HOME");
+		if (home && *home)
+			if (chdir(home))
+				perror("minishell ");
 	}
-	if (g_crime.parent_pid != getpid())
-		exit(errno);
+	if (!g_crime.parent_pid == getpid())
+		exit (errno);
 }

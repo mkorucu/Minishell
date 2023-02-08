@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 18:00:04 by mkorucu           #+#    #+#             */
-/*   Updated: 2023/02/07 13:52:39 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/08 15:21:00 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	cmd_error(char *str)
 {
 	errno = 127;
-
 	write(2, "minishell: ", 11);
 	write(2, str, ft_strlen(str));
 	write(2, ": command not found\n", 20);

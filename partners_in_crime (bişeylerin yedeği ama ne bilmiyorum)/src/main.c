@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:44:53 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/07 14:21:13 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/08 15:32:11 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	start(char *input)
 	g_crime.process = NULL;
 	g_crime.process_count = 0;
 	listing(input);
-	if(!listing_process())
+	if (!listing_process())
 		return ;
 	start_cmd();
 }
@@ -51,7 +51,7 @@ int	main(int ac, char **av, char **env)
 	char	*input;
 	char	*prompter;
 
-	commit_an_offense(env); //init(env)
+	commit_an_offense(env);
 	while (av && ac)
 	{
 		signal(SIGINT, &handle_sigint);
@@ -66,7 +66,7 @@ int	main(int ac, char **av, char **env)
 			free(input);
 			input = malloc(1);
 		}
-		start(input); //Burası
+		start(input);
 		add_history(input);
 		free(input);
 		free(prompter);
