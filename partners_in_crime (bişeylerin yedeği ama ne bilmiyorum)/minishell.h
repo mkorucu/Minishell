@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:52:01 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/08 17:18:38 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 17:23:59 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ typedef struct s_data
 	int			fail;
 }		t_data;
 
-extern t_data g_crime;
+extern t_data	g_crime;
 
 int				main(int ac, char **av, char **env);
 int				operator_check(char **str);

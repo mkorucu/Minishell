@@ -6,7 +6,7 @@
 /*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:44:53 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/08 16:51:12 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/08 17:25:11 by bkeklik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int ac, char **av, char **env)
 		g_crime.fail = 0;
 		prompter = prompt();
 		input = readline(prompter);
-		write(1,DEFAULT, 10);
+		write(1, DEFAULT, 10);
 		handle_exit(input);
 		if (g_crime.fail)
 		{

@@ -58,11 +58,11 @@ $(NAME)		: $(OBJ)
 			@${CC} ${CFLAGS} -c $< -o $@
 
 clean	:
-			$(RM) $(OBJ)
+			$(RM) $(OBJ) $(LIB)
 			$(REMOVE)
 
 fclean	:	clean
-			$(RM) $(NAME)
+			$(RM) $(NAME) $(LIB)
 		
 re		:	fclean all
 
