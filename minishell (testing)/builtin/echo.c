@@ -6,11 +6,22 @@
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:23:12 by btekinli          #+#    #+#             */
-/*   Updated: 2023/02/08 12:47:18 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/08 13:27:46 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (!s)
+		return ;
+	while (*s)
+	{
+		write (fd, s, 1);
+		s++;
+	}
+}
 
 void	builtin_echo(char **input)
 {

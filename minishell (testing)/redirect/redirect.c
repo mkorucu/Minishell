@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btekinli <btekinli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 22:11:59 by btekinli          #+#    #+#             */
-/*   Updated: 2022/10/13 13:53:21 by btekinli         ###   ########.fr       */
+/*   Created: 2023/02/08 13:13:15 by mkorucu           #+#    #+#             */
+/*   Updated: 2023/02/08 13:17:10 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../minishell.h"
 
 void	get_all_inputs(t_process *process)
 {
 	int		i;
+	int		fd;
 	char	**redirects;
 
 	i = 0;
@@ -22,7 +24,17 @@ void	get_all_inputs(t_process *process)
 	while (redirects[i])
 	{
 		if (is_operator(redirects[i]) == RED_INPUT)
-			input(redirects[i + 1]);
+		{
+			//input(redirects[i + 1]);
+			fd = open(redirects[i + 1], O_RDONLY);
+			if (fd == -1)
+				return (no_file_err(redirects[i + 1]));
+			else
+			{
+				dup2(fd, 0);
+				close(fd);
+			}
+		}	
 		else if (is_operator(redirects[i]) == HERE_DOC)
 			dup2(process->heredoc_fd[0], 0);
 		i += 2;
