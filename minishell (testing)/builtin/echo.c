@@ -3,41 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btekinli <btekinli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:23:12 by btekinli          #+#    #+#             */
-/*   Updated: 2022/10/13 11:59:04 by btekinli         ###   ########.fr       */
+/*   Updated: 2023/02/08 12:47:18 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	put_char(char *input)
-{
-	int	i;
-
-	i = 0;
-	while (input[i])
-	{
-		write(STDOUT_FILENO, &(input[i]), 1);
-		i++;
-	}
-}
-
-int	skip_flag(char **str)
-{
-	int	i;
-
-	i = 1;
-	while (str[i])
-	{
-		if (ft_strcmp(str[i], "-n"))
-			i++;
-		else
-			break ;
-	}
-	return (i);
-}
 
 void	builtin_echo(char **input)
 {
@@ -45,13 +18,14 @@ void	builtin_echo(char **input)
 	int	flag;
 
 	i = 1;
-	flag = TRUE;
-	i = skip_flag(input);
+	flag = 1;
+	if (input[i] && ft_strcmp(input[i], "-n"))
+		i++;
 	if (i > 1)
-		flag = FALSE;
+		flag = 0;
 	while (input[i])
 	{
-		put_char(input[i]);
+		ft_putstr_fd(input[i], 1);
 		if (input[i + 1])
 			write(STDOUT_FILENO, " ", 1);
 		i++;
