@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.c                                          :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 22:10:19 by btekinli          #+#    #+#             */
-/*   Updated: 2023/02/08 14:13:19 by mkorucu          ###   ########.fr       */
+/*   Created: 2023/02/08 14:11:58 by mkorucu           #+#    #+#             */
+/*   Updated: 2023/02/08 14:13:27 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
-void	heredoc(int *fd, char *endline)
+
+void	close_heredoc(int sig)
 {
-	char		*input;
+	(void)sig;
+	g_ms.ignore = TRUE;
+	ioctl(STDIN_FILENO, TIOCSTI, "\n");
+}
 
-	if (pipe(fd) < 0)
-		return (perror("minishell"));
-	while (1)
+void	handle_sigint(int sig)
+{
+	if (sig == SIGINT)
 	{
-		signal(SIGINT, &close_heredoc);
-		input = readline("heredoc>> ");
-		if (!input || ft_strcmp(input, endline) || g_ms.ignore)
-		{
-			free(input);
-			break ;
-		}
-		write(fd[1], input, ft_strlen(input));
-		write(fd[1], "\n", 1);
-		free(input);
+		g_ms.ignore = 1;
+		ioctl(STDIN_FILENO, TIOCSTI, "\n");
+		write(1, "\033[A", 3);
 	}
-	close(fd[1]);
+}
+
+void	ctrl_d(char *input)
+{
+	if (!input)
+	{
+		printf("exit\n");
+		exit(errno);
+	}
 }

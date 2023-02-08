@@ -6,7 +6,7 @@
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 22:14:23 by btekinli          #+#    #+#             */
-/*   Updated: 2023/02/07 14:20:43 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/08 14:12:56 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,6 @@ void	start(char *input)
 	free_process();
 }
 
-void	handle_sigint(int sig)
-{
-	if (sig == SIGINT)
-	{
-		g_ms.ignore = 1;
-		ioctl(STDIN_FILENO, TIOCSTI, "\n");
-		write(1, "\033[A", 3);
-	}
-}
-
-void	ctrl_d(char *input)
-{
-	if (!input)
-	{
-		printf("exit\n");
-		exit(errno);
-	}
-}
-
 char	*prompt(void)
 {
 	char	*str;
@@ -82,7 +63,7 @@ int	main(int ac, char **av, char **env)
 		prompter = prompt();	
 		input = readline(prompter);
 		write(1, DEFAULT, 10);
-		ctrl_d(input); //Handle exit
+		ctrl_d(input);
 		if (g_ms.ignore)
 		{
 			free(input);

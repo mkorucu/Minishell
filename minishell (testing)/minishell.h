@@ -6,7 +6,7 @@
 /*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:24:38 by btekinli          #+#    #+#             */
-/*   Updated: 2023/02/07 13:49:04 by mkorucu          ###   ########.fr       */
+/*   Updated: 2023/02/08 14:14:55 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,4 +161,9 @@ char		*ft_substr(char const *str, unsigned int start, size_t len);
 int			add_list(t_token **chain, t_token *new_chain);
 void		add_process(t_process **list, t_process *new_process);
 
+
+
+void	close_heredoc(int sig);
+void	ctrl_d(char *input);
+void	handle_sigint(int sig);
 #endif

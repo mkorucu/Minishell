@@ -16,7 +16,7 @@ D_UTILS			=	utils/ft_atoi.c			utils/ft_itoa.c		utils/ft_split.c		utils/ft_strcmp
 D_BUILTIN	=	builtin/builtin.c		builtin/cd.c		builtin/echo.c			builtin/env.c		builtin/exit.c		builtin/export.c	builtin/pwd.c		builtin/unset.c
 D_REDIRECT	=	redirect/heredoc.c		redirect/input.c	redirect/output.c		redirect/redirect.c
 D_LISTING	=	listing/str_listing.c	listing/listing.c
-D_MINISHELL	=	main.c
+D_MINISHELL	=	main.c	signals.c
 
 # COMMAND
 SUCCESS		=	@echo "$(GREEN)Build successfull !$(RESET)"
