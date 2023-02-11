@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkeklik <bkeklik@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkorucu <mkorucu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 20:57:54 by bkeklik           #+#    #+#             */
-/*   Updated: 2023/02/08 17:09:42 by bkeklik          ###   ########.fr       */
+/*   Updated: 2023/02/11 20:50:23 by mkorucu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	set_all_outputs(t_process *process)
 	redirects = process->redirects;
 	while (redirects[i])
 	{
-		if (!ft_strncmp(redirects[i], ">", 1))
+		if (ft_strcmp(redirects[i], ">"))
 			output(redirects[i + 1], 1);
-		else if (!ft_strncmp(redirects[i], ">>", 2))
+		else if (ft_strcmp(redirects[i], ">>"))
 			output(redirects[i + 1], 0);
 		i += 2;
 	}
